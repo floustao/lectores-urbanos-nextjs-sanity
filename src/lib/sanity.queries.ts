@@ -1,4 +1,3 @@
-import type { PortableTextBlock } from '@portabletext/types'
 import type { ImageAsset, Slug } from '@sanity/types'
 import groq from 'groq'
 import { type SanityClient } from 'next-sanity'
@@ -24,13 +23,34 @@ export const postSlugsQuery = groq`
 *[_type == "post" && defined(slug.current)][].slug.current
 `
 
-export interface Post {
+export async function getBook(
+  client: SanityClient,
+  _id: string,
+): Promise<Book> {
+  return await client.fetch(groq`*[_type == "book" && _id == $_id][0]`, {
+    _id,
+  })
+}
+
+export type Reference<T> = {
+  _ref: string
+  _type: 'reference'
+}
+
+export type Book = {
+  _type: 'book'
+  _id: string
+  title: string
+  author: string
+  url: string
+}
+
+export type Post = {
   _type: 'post'
   _id: string
   _createdAt: string
-  title?: string
+  title: string
   slug: Slug
-  excerpt?: string
+  book: Reference<Book>
   mainImage?: ImageAsset
-  body: PortableTextBlock[]
 }
