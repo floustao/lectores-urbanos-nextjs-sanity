@@ -74,9 +74,11 @@ export default function ProjectSlugRoute(
 
           <Text>{formatDate(post._createdAt)}</Text>
 
-          <Link href={props.book.url} isExternal as={NextLink}>
-            {props.book.title} by {props.book.author}
-          </Link>
+          {props.book && (
+            <Link href={props.book.url} isExternal as={NextLink}>
+              {props.book.title} by {props.book.author}
+            </Link>
+          )}
         </div>
       </section>
     </Container>
