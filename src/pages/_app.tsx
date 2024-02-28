@@ -4,6 +4,8 @@ import type { AppProps } from 'next/app'
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
 import { lazy } from 'react'
 
+import { ChakraProviders } from '~/components/ChakraProvider'
+
 export interface SharedPageProps {
   draftMode: boolean
   token: string
@@ -46,13 +48,15 @@ export default function App({
           }
         `}
       </style>
-      {draftMode ? (
-        <PreviewProvider token={token}>
+      <ChakraProviders>
+        {draftMode ? (
+          <PreviewProvider token={token}>
+            <Component {...pageProps} />
+          </PreviewProvider>
+        ) : (
           <Component {...pageProps} />
-        </PreviewProvider>
-      ) : (
-        <Component {...pageProps} />
-      )}
+        )}
+      </ChakraProviders>
     </>
   )
 }

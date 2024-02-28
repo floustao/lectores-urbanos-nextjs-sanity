@@ -1,11 +1,15 @@
-import Link from 'next/link'
+import { Image, Link } from '@chakra-ui/react'
+import NextLink from 'next/link'
 
 export default function Container({ children }: { children: React.ReactNode }) {
   return (
     <div className="container">
       <header className="header">
-        <Link className="header__title" href="/">
-          Lectores Urbanos
+        <Link className="header__title" href="/" as={NextLink}>
+          <Image
+            src="https://lectoresurbanos.com/assets/images/logo.png"
+            alt="go to homepage"
+          />
         </Link>
       </header>
       <main>{children}</main>

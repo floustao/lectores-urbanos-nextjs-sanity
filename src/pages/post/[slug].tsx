@@ -1,5 +1,6 @@
+import { Button, Heading, Image, Link, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import Image from 'next/image'
+import NextLink from 'next/link'
 import { useLiveQuery } from 'next-sanity/preview'
 
 import Container from '~/components/Container'
@@ -60,21 +61,24 @@ export default function ProjectSlugRoute(
       <section className="post">
         {post.mainImage ? (
           <Image
-            className="post__cover"
             src={urlForImage(post.mainImage).url()}
-            height={231}
-            width={367}
-            alt=""
+            height="auto"
+            width="300px"
+            alt={post.title}
           />
         ) : (
           <div className="post__cover--none" />
         )}
         <div className="post__container">
-          <h1 className="post__title">{post.title}</h1>
-          <p className="post__date">{formatDate(post._createdAt)}</p>
-          <a href={props.book.url} target="_blank" rel="noopener noreferrer">
+          <Heading as="h1">{post.title}</Heading>
+
+          <Text>{formatDate(post._createdAt)}</Text>
+
+          <br />
+
+          <Link href={props.book.url} isExternal as={NextLink}>
             {props.book.title} by {props.book.author}
-          </a>
+          </Link>
         </div>
       </section>
     </Container>
