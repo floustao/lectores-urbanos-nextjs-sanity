@@ -1,3 +1,5 @@
+'use client'
+
 import { Button, Heading, Image, Link, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import NextLink from 'next/link'
