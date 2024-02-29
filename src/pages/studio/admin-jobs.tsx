@@ -3,7 +3,7 @@
 import { Center, Heading, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
 
-import UpdatePostsButton from '~/components/UpdatePostsButton'
+import UpdateCompaniesButton from '~/components/UpdateCompaniesButton'
 
 export default function AdminJobs() {
   return (
@@ -19,7 +19,7 @@ export default function AdminJobs() {
           1. Update the connections between companies and books (randomly)
         </Text>
 
-        <UpdatePostsButton />
+        <UpdateCompaniesButton />
       </Stack>
     </Center>
   )

@@ -2,25 +2,25 @@ import type { ImageAsset, Slug } from '@sanity/types'
 import groq from 'groq'
 import { type SanityClient } from 'next-sanity'
 
-export const postsQuery = groq`*[_type == "post" && defined(slug.current)] | order(_createdAt desc)`
+export const companiesQuery = groq`*[_type == "company" && defined(slug.current)] | order(_createdAt desc)`
 
-export async function getPosts(client: SanityClient): Promise<Post[]> {
-  return await client.fetch(postsQuery)
+export async function getCompanies(client: SanityClient): Promise<Company[]> {
+  return await client.fetch(companiesQuery)
 }
 
-export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0]`
+export const postBySlugQuery = groq`*[_type == "company" && slug.current == $slug][0]`
 
 export async function getPost(
   client: SanityClient,
   slug: string,
-): Promise<Post> {
+): Promise<Company> {
   return await client.fetch(postBySlugQuery, {
     slug,
   })
 }
 
-export const postSlugsQuery = groq`
-*[_type == "post" && defined(slug.current)][].slug.current
+export const companySlugsQuery = groq`
+*[_type == "company" && defined(slug.current)][].slug.current
 `
 
 export async function getBook(
@@ -45,8 +45,8 @@ export type Book = {
   url: string
 }
 
-export type Post = {
-  _type: 'post'
+export type Company = {
+  _type: 'company'
   _id: string
   _createdAt: string
   title: string

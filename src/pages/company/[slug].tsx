@@ -11,11 +11,11 @@ import { getClient } from '~/lib/sanity.client'
 import { urlForImage } from '~/lib/sanity.image'
 import {
   type Book,
+  type Company,
+  companySlugsQuery,
   getBook,
   getPost,
-  type Post,
   postBySlugQuery,
-  postSlugsQuery,
 } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 import { formatDate } from '~/utils'
@@ -26,26 +26,26 @@ interface Query {
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
-    post: Post
+    company: Company
     book: Book
   },
   Query
 > = async ({ draftMode = false, params = {} }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const post = await getPost(client, params.slug)
+  const company = await getPost(client, params.slug)
 
-  if (!post) {
+  if (!company) {
     return {
       notFound: true,
     }
   }
-  const book = await getBook(client, post.book._ref)
+  const book = await getBook(client, company.book._ref)
 
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
-      post,
+      company,
       book,
     },
   }
@@ -54,27 +54,27 @@ export const getStaticProps: GetStaticProps<
 export default function ProjectSlugRoute(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const [post] = useLiveQuery(props.post, postBySlugQuery, {
-    slug: props.post.slug.current,
+  const [company] = useLiveQuery(props.company, postBySlugQuery, {
+    slug: props.company.slug.current,
   })
 
   return (
     <Container>
-      <section className="post">
-        {post.mainImage ? (
+      <section className="company">
+        {company.mainImage ? (
           <Image
-            src={urlForImage(post.mainImage).url()}
+            src={urlForImage(company.mainImage).url()}
             height="auto"
             width="300px"
-            alt={post.title}
+            alt={company.title}
           />
         ) : (
           <div className="post__cover--none" />
         )}
         <div className="post__container">
-          <Heading as="h1">{post.title}</Heading>
+          <Heading as="h1">{company.title}</Heading>
 
-          <Text>{formatDate(post._createdAt)}</Text>
+          <Text>{formatDate(company._createdAt)}</Text>
 
           {props.book && (
             <Link href={props.book.url} isExternal as={NextLink}>
@@ -89,10 +89,10 @@ export default function ProjectSlugRoute(
 
 export const getStaticPaths = async () => {
   const client = getClient()
-  const slugs = await client.fetch(postSlugsQuery)
+  const slugs = await client.fetch(companySlugsQuery)
 
   return {
-    paths: slugs?.map(({ slug }) => `/post/${slug}`) || [],
+    paths: slugs?.map(({ slug }) => `/company/${slug}`) || [],
     fallback: 'blocking',
   }
 }

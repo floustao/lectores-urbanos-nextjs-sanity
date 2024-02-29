@@ -5,20 +5,20 @@ import { getClient } from '~/lib/sanity.client'
 export async function updatePostBooks() {
   const client = getClient({ token: writeToken })
   try {
-    const posts = await client.fetch('*[_type == "post"]');
+    const companies = await client.fetch('*[_type == "company"]');
 
-    for (const post of posts) {
+    for (const company of companies) {
       const newBookRef = await selectRandomBook();
 
-      // Update the post in Sanity with the new book reference
-      await client.patch(post._id)
+      // Update the company in Sanity with the new book reference
+      await client.patch(company._id)
         .set({ book: newBookRef })
         .commit();
     }
 
-    console.log('Posts updated successfully');
+    console.log('Companies updated successfully');
   } catch (error) {
-    console.error('Error updating posts:', error);
+    console.error('Error updating companies:', error);
     throw error;
   }
 }

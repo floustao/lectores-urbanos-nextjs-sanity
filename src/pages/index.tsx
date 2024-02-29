@@ -6,22 +6,26 @@ import Container from '~/components/Container'
 import Welcome from '~/components/Welcome'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
-import { getPosts, type Post, postsQuery } from '~/lib/sanity.queries'
+import {
+  companiesQuery,
+  type Company,
+  getCompanies,
+} from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
-    posts: Post[]
+    companies: Company[]
   }
 > = async ({ draftMode = false }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const posts = await getPosts(client)
+  const companies = await getCompanies(client)
 
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
-      posts,
+      companies,
     },
   }
 }
@@ -29,12 +33,14 @@ export const getStaticProps: GetStaticProps<
 export default function IndexPage(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const [posts] = useLiveQuery<Post[]>(props.posts, postsQuery)
+  const [companies] = useLiveQuery<Company[]>(props.companies, companiesQuery)
   return (
     <Container>
       <section>
-        {posts.length ? (
-          posts.map((post) => <CompanyCard key={post._id} post={post} />)
+        {companies.length ? (
+          companies.map((company) => (
+            <CompanyCard key={company._id} company={company} />
+          ))
         ) : (
           <Welcome />
         )}

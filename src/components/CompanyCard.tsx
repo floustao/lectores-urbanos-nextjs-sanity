@@ -4,29 +4,29 @@ import { Heading, Image, Link } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
 import { urlForImage } from '~/lib/sanity.image'
-import { type Post } from '~/lib/sanity.queries'
+import { type Company } from '~/lib/sanity.queries'
 import { formatDate } from '~/utils'
 
-export default function CompanyCard({ post }: { post: Post }) {
+export default function CompanyCard({ company }: { company: Company }) {
   return (
     <div className="card">
-      {post.mainImage ? (
+      {company.mainImage ? (
         <Image
-          src={urlForImage(post.mainImage).url()}
+          src={urlForImage(company.mainImage).url()}
           height="auto"
           width="300px"
-          alt={post.title}
+          alt={company.title}
         />
       ) : (
         <div className="card__cover--none" />
       )}
       <div className="card__container">
         <Heading as="h2">
-          <Link href={`/post/${post.slug.current}`} as={NextLink}>
-            {post.title}
+          <Link href={`/company/${company.slug.current}`} as={NextLink}>
+            {company.title}
           </Link>
         </Heading>
-        <p className="card__date">{formatDate(post._createdAt)}</p>
+        <p className="card__date">{formatDate(company._createdAt)}</p>
       </div>
     </div>
   )
