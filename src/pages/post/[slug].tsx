@@ -86,7 +86,7 @@ export default function ProjectSlugRoute(
 }
 
 export const getStaticPaths = async () => {
-  const client = getClient()
+  const client = getClient({ token: readToken })
   const slugs = await client.fetch(postSlugsQuery)
 
   return {
