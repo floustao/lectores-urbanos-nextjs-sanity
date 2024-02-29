@@ -34,6 +34,7 @@ export default defineType({
       title: 'Book',
       type: 'reference',
       to: [{ type: 'book' }],
+      validation: (Rule) => Rule.required(),
     }),
   ],
   preview: {
