@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Heading, Image, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Heading, Image, Link, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import NextLink from 'next/link'
 import { useLiveQuery } from 'next-sanity/preview'
@@ -61,27 +61,29 @@ export default function ProjectSlugRoute(
   return (
     <Container>
       <section className="company">
-        {company.mainImage ? (
-          <Image
-            src={urlForImage(company.mainImage).url()}
-            height="auto"
-            width="300px"
-            alt={company.title}
-          />
-        ) : (
-          <div className="post__cover--none" />
-        )}
-        <div className="post__container">
-          <Heading as="h1">{company.title}</Heading>
-
-          <Text>{formatDate(company._createdAt)}</Text>
-
-          {props.book && (
-            <Link href={props.book.url} isExternal as={NextLink}>
-              {props.book.title} by {props.book.author}
-            </Link>
+        <Box borderRadius="xl" backgroundColor="white" shadow="base" p="4">
+          {company.mainImage ? (
+            <Image
+              src={urlForImage(company.mainImage).url()}
+              height="auto"
+              width="100px"
+              alt={company.title}
+            />
+          ) : (
+            <div className="post__cover--none" />
           )}
-        </div>
+          <div className="post__container">
+            <Heading as="h1">{company.title}</Heading>
+
+            <Text>{formatDate(company._createdAt)}</Text>
+
+            {props.book && (
+              <Link href={props.book.url} isExternal as={NextLink}>
+                {props.book.title} by {props.book.author}
+              </Link>
+            )}
+          </div>
+        </Box>
       </section>
     </Container>
   )

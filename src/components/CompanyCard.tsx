@@ -14,7 +14,7 @@ export default function CompanyCard({ company }: { company: Company }) {
         <Image
           src={urlForImage(company.mainImage).url()}
           height="auto"
-          width="300px"
+          width="200px"
           alt={company.title}
         />
       ) : (

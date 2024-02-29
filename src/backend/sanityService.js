@@ -2,7 +2,7 @@ import { readToken, writeToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 
 
-export async function updatePostBooks() {
+export async function updateCompanyBooks() {
   const client = getClient({ token: writeToken })
   try {
     const companies = await client.fetch('*[_type == "company"]');
