@@ -4,7 +4,7 @@ import NextLink from 'next/link'
 import { useLiveQuery } from 'next-sanity/preview'
 
 import Container from '~/components/Container'
-import { readToken } from '~/lib/sanity.api'
+import { readToken, writeToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 import { urlForImage } from '~/lib/sanity.image'
 import {
@@ -29,7 +29,9 @@ export const getStaticProps: GetStaticProps<
   },
   Query
 > = async ({ draftMode = false, params = {} }) => {
-  const client = getClient(draftMode ? { token: readToken } : undefined)
+  // const client = getClient(draftMode ? { token: readToken } : undefined)
+  const client = getClient({ token: writeToken })
+
   const post = await getPost(client, params.slug)
 
   if (!post) {
@@ -86,7 +88,7 @@ export default function ProjectSlugRoute(
 }
 
 export const getStaticPaths = async () => {
-  const client = getClient({ token: readToken })
+  const client = getClient({ token: writeToken })
   const slugs = await client.fetch(postSlugsQuery)
 
   return {
