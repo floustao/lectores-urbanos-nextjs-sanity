@@ -25,26 +25,26 @@ interface Query {
 export const getStaticProps: GetStaticProps<
   SharedPageProps & {
     post: Post
-    // book: Book
+    book: Book
   },
   Query
 > = async ({ draftMode = false, params = {} }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
   const post = await getPost(client, params.slug)
-  // const book = await getBook(client, post.book._ref)
 
   if (!post) {
     return {
       notFound: true,
     }
   }
+  const book = await getBook(client, post.book._ref)
 
   return {
     props: {
       draftMode,
       token: draftMode ? readToken : '',
       post,
-      // book,
+      book,
     },
   }
 }
@@ -74,11 +74,11 @@ export default function ProjectSlugRoute(
 
           <Text>{formatDate(post._createdAt)}</Text>
 
-          {/* {props.book && (
+          {props.book && (
             <Link href={props.book.url} isExternal as={NextLink}>
               {props.book.title} by {props.book.author}
             </Link>
-          )} */}
+          )}
         </div>
       </section>
     </Container>
