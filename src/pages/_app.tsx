@@ -2,6 +2,7 @@ import '~/styles/global.css'
 
 import type { AppProps } from 'next/app'
 import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
+import Head from 'next/head'
 import { lazy } from 'react'
 
 import { ChakraProviders } from '~/components/ChakraProvider'
@@ -39,6 +40,9 @@ export default function App({
   const { draftMode, token } = pageProps
   return (
     <>
+      <Head>
+        <title>Lectores urbanos, primera biblioteca de Mexico</title>
+      </Head>
       <style jsx global>
         {`
           :root {
