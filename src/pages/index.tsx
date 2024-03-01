@@ -3,7 +3,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
 
 import CompanyCard from '~/components/CompanyCard'
-import { Container } from '~/components/Container'
+import { Layout } from '~/components/Layout'
 import Welcome from '~/components/Welcome'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
@@ -36,7 +36,7 @@ export default function IndexPage(
 ) {
   const [companies] = useLiveQuery<Company[]>(props.companies, companiesQuery)
   return (
-    <Container>
+    <Layout>
       {companies.length ? (
         <Stack>
           <Heading as="h1" size="sm">
@@ -49,6 +49,6 @@ export default function IndexPage(
       ) : (
         <Welcome />
       )}
-    </Container>
+    </Layout>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { Heading, Image, Link, Stack } from '@chakra-ui/react'
+import { Heading, Image, Link, Stack, Text } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
 import { Card } from '~/imports/chakra/components/Card'
@@ -17,6 +17,7 @@ export default function CompanyCard({ company }: { company: Company }) {
           src={urlForImage(company.mainImage).url()}
           height="auto"
           width={['full', '200px']}
+          objectFit="contain"
           alt={company.title}
           fallback={
             <ImageFallback w={['full', '200px']} h={['auto', '150px']} />
@@ -31,7 +32,7 @@ export default function CompanyCard({ company }: { company: Company }) {
             {company.title}
           </Link>
         </Heading>
-        <p className="card__date">Desde {formatDate(company._createdAt)}</p>
+        <Text>Desde {formatDate(company._createdAt)}</Text>
       </Stack>
     </Card>
   )

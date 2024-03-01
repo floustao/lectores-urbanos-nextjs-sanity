@@ -12,7 +12,7 @@ export const Card: React.FC<CardProps & BoxProps> = ({
   return (
     <Box
       p="4"
-      borderRadius="xl"
+      borderRadius="lg"
       backgroundColor="white"
       shadow="base"
       {...props}

@@ -1,10 +1,18 @@
 'use client'
 
-import { Button, chakra, Heading, Image, Stack, Text } from '@chakra-ui/react'
+import {
+  Box,
+  chakra,
+  Heading,
+  Image,
+  Link,
+  Stack,
+  Text,
+} from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
 
-import { Container } from '~/components/Container'
+import { Layout } from '~/components/Layout'
 import { NextMonth } from '~/components/NextMonth'
 import { Card } from '~/imports/chakra/components/Card'
 import { ImageFallback } from '~/imports/chakra/components/ImageFallback'
@@ -60,45 +68,42 @@ export default function ProjectSlugRoute(
   })
 
   return (
-    <Container>
+    <Layout>
       <Stack spacing="4">
-        <Heading as="h1" size="lg">
+        <Heading as="h1" size="lg" textAlign="center">
           Disfruta tu libro!
         </Heading>
-        <Text>
-          <chakra.span fontWeight="bold">
-            {company.title[0].toUpperCase() + company.title.slice(1)}
-          </chakra.span>{' '}
-          y Lectores Urbanos te regalan un libro distinto cada mes. Proxima
-          actualizacion el primero de <NextMonth />
-        </Text>
 
-        <Card as="section">
-          <Stack>
+        <Box as="section">
+          <Stack justify="center" align="center" spacing="8">
             {company.mainImage && (
               <Image
                 src={urlForImage(company.mainImage).url()}
                 height="auto"
-                width="auto"
+                width="400px"
                 alt={company.title}
                 fallback={<ImageFallback w="200px" h="150px" />}
+                shadow="base"
               />
             )}
 
-            <Button
-              as="a"
-              size="md"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={props.book.url}
-              colorScheme="purple"
-            >
-              {props.book.title} de {props.book.author}
-            </Button>
+            <Text textAlign="center">
+              <chakra.span fontWeight="bold">
+                {company.title[0].toUpperCase() + company.title.slice(1)}
+              </chakra.span>{' '}
+              y Lectores Urbanos te regalan un libro distinto cada mes. <br />{' '}
+              Proxima actualizacion el primero de <NextMonth />
+            </Text>
+
+            <Card bg="primary.500">
+              <Link isExternal href={props.book.url} color="white">
+                {props.book.title} de {props.book.author}
+              </Link>
+            </Card>
           </Stack>
-        </Card>
+        </Box>
       </Stack>
-    </Container>
+    </Layout>
   )
 }
 

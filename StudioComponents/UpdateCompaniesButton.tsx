@@ -35,8 +35,21 @@ export default function UpdateCompaniesButton() {
   }
 
   return (
-    <Button onClick={handleupdateCompanies} isLoading={isLoading}>
-      Update Companies
+    <Button
+      isLoading={isLoading}
+      size="sm"
+      onClick={() => {
+        // Add confirmation before destructive actions.
+        if (
+          window.confirm(
+            'Are you sure you want to shuffle the connections between all companies and books?',
+          )
+        ) {
+          handleupdateCompanies()
+        }
+      }}
+    >
+      Shuffle all books within companies
     </Button>
   )
 }

@@ -21,6 +21,8 @@ import {
 } from '~/lib/sanity.api'
 import { schema } from '~/schemas'
 
+import { CustomNavBar } from './StudioComponents/CustomNavBar'
+
 const iframeOptions = {
   url: defineUrlResolver({
     base: '/api/draft',
@@ -64,4 +66,9 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
   ],
+  studio: {
+    components: {
+      navbar: CustomNavBar,
+    },
+  },
 })
