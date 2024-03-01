@@ -11,7 +11,7 @@ import { BookStack, LoveIcon } from './assets'
 
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <Container maxW="container.xl" p="8">
+    <Container maxW="container.xl">
       <Stack
         m="0 auto"
         spacing="4"
@@ -23,6 +23,7 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
         `}
         gridTemplateRows="auto 1fr auto"
         height="100vh"
+        p="8"
       >
         <HStack justify="space-between" as="header" gridArea="header">
           <Link className="header__title" href="/" as={NextLink}>
