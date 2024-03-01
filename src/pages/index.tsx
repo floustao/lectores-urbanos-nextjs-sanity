@@ -37,20 +37,18 @@ export default function IndexPage(
   const [companies] = useLiveQuery<Company[]>(props.companies, companiesQuery)
   return (
     <Container>
-      <Stack>
-        {companies.length ? (
-          <>
-            <Heading as="h1" size="sm">
-              Descubre las companias que apoyan el proyecto
-            </Heading>
-            {companies.map((company) => (
-              <CompanyCard key={company._id} company={company} />
-            ))}
-          </>
-        ) : (
-          <Welcome />
-        )}
-      </Stack>
+      {companies.length ? (
+        <Stack>
+          <Heading as="h1" size="sm">
+            Descubre las companias que apoyan el proyecto
+          </Heading>
+          {companies.map((company) => (
+            <CompanyCard key={company._id} company={company} />
+          ))}
+        </Stack>
+      ) : (
+        <Welcome />
+      )}
     </Container>
   )
 }

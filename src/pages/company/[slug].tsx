@@ -1,6 +1,6 @@
 'use client'
 
-import { Heading, Image, Link, Text } from '@chakra-ui/react'
+import { Box, chakra, Heading, Image, Link, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import NextLink from 'next/link'
 import { useLiveQuery } from 'next-sanity/preview'
@@ -62,8 +62,15 @@ export default function ProjectSlugRoute(
 
   return (
     <Container>
-      <Heading as="h1">Disfruta tu libro</Heading>
-      <section className="company">
+      <Heading as="h1" size="lg">
+        Disfruta tu libro!
+      </Heading>
+      <Text>
+        <chakra.span fontWeight="bold">{company.title}</chakra.span> y Lectores
+        Urbanos te regalan un libro distinto cada mes.
+      </Text>
+      <Text>Proxima actualizacion el primero de </Text>
+      <Box as="section">
         <Card>
           {company.mainImage ? (
             <Image
@@ -77,7 +84,9 @@ export default function ProjectSlugRoute(
             <div className="post__cover--none" />
           )}
           <div className="post__container">
-            <Heading as="h1">{company.title}</Heading>
+            <Heading as="h2" size="md">
+              {company.title}
+            </Heading>
 
             <Text>{formatDate(company._createdAt)}</Text>
 
@@ -88,7 +97,7 @@ export default function ProjectSlugRoute(
             )}
           </div>
         </Card>
-      </section>
+      </Box>
     </Container>
   )
 }
