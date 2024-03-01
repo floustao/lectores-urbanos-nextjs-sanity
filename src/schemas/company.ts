@@ -9,7 +9,14 @@ export default defineType({
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) => [
+        Rule.required()
+          .min(2)
+          .error('The title must be at least 2 characters long.'),
+        Rule.required()
+          .max(40)
+          .warning('Long titles may break the design of the page.'),
+      ],
     }),
     defineField({
       name: 'slug',

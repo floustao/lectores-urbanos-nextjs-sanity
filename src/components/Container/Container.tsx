@@ -15,11 +15,11 @@ import booksImage from './books.png'
 
 export const Container: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <ChakraContainer maxW="xl">
+    <ChakraContainer maxW="2xl">
       <Stack
         m="0 auto"
         spacing="4"
-        p="4"
+        p="8"
         display="grid"
         gridTemplateAreas={`
       "header"

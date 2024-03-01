@@ -1,11 +1,11 @@
 'use client'
 
-import { Box, chakra, Heading, Image, Link, Text } from '@chakra-ui/react'
+import { Button, chakra, Heading, Image, Stack, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import NextLink from 'next/link'
 import { useLiveQuery } from 'next-sanity/preview'
 
 import { Container } from '~/components/Container'
+import { NextMonth } from '~/components/NextMonth'
 import { Card } from '~/imports/chakra/components/Card'
 import { ImageFallback } from '~/imports/chakra/components/ImageFallback'
 import { readToken } from '~/lib/sanity.api'
@@ -20,7 +20,6 @@ import {
   postBySlugQuery,
 } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
-import { formatDate } from '~/utils'
 
 interface Query {
   [key: string]: string
@@ -62,42 +61,43 @@ export default function ProjectSlugRoute(
 
   return (
     <Container>
-      <Heading as="h1" size="lg">
-        Disfruta tu libro!
-      </Heading>
-      <Text>
-        <chakra.span fontWeight="bold">{company.title}</chakra.span> y Lectores
-        Urbanos te regalan un libro distinto cada mes.
-      </Text>
-      <Text>Proxima actualizacion el primero de </Text>
-      <Box as="section">
-        <Card>
-          {company.mainImage ? (
-            <Image
-              src={urlForImage(company.mainImage).url()}
-              height="auto"
-              width="200px"
-              alt={company.title}
-              fallback={<ImageFallback w="200px" h="150px" />}
-            />
-          ) : (
-            <div className="post__cover--none" />
-          )}
-          <div className="post__container">
-            <Heading as="h2" size="md">
-              {company.title}
-            </Heading>
+      <Stack spacing="4">
+        <Heading as="h1" size="lg">
+          Disfruta tu libro!
+        </Heading>
+        <Text>
+          <chakra.span fontWeight="bold">
+            {company.title[0].toUpperCase() + company.title.slice(1)}
+          </chakra.span>{' '}
+          y Lectores Urbanos te regalan un libro distinto cada mes. Proxima
+          actualizacion el primero de <NextMonth />
+        </Text>
 
-            <Text>{formatDate(company._createdAt)}</Text>
-
-            {props.book && (
-              <Link href={props.book.url} isExternal as={NextLink}>
-                {props.book.title} by {props.book.author}
-              </Link>
+        <Card as="section">
+          <Stack>
+            {company.mainImage && (
+              <Image
+                src={urlForImage(company.mainImage).url()}
+                height="auto"
+                width="auto"
+                alt={company.title}
+                fallback={<ImageFallback w="200px" h="150px" />}
+              />
             )}
-          </div>
+
+            <Button
+              as="a"
+              size="md"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={props.book.url}
+              colorScheme="purple"
+            >
+              {props.book.title} de {props.book.author}
+            </Button>
+          </Stack>
         </Card>
-      </Box>
+      </Stack>
     </Container>
   )
 }
