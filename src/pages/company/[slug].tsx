@@ -1,11 +1,13 @@
 'use client'
 
-import { Box, Button, Heading, Image, Link, Text } from '@chakra-ui/react'
+import { Heading, Image, Link, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import NextLink from 'next/link'
 import { useLiveQuery } from 'next-sanity/preview'
 
-import Container from '~/components/Container'
+import { Container } from '~/components/Container'
+import { Card } from '~/imports/chakra/components/Card'
+import { ImageFallback } from '~/imports/chakra/components/ImageFallback'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 import { urlForImage } from '~/lib/sanity.image'
@@ -60,14 +62,16 @@ export default function ProjectSlugRoute(
 
   return (
     <Container>
+      <Heading as="h1">Disfruta tu libro</Heading>
       <section className="company">
-        <Box borderRadius="xl" backgroundColor="white" shadow="base" p="4">
+        <Card>
           {company.mainImage ? (
             <Image
               src={urlForImage(company.mainImage).url()}
               height="auto"
-              width="100px"
+              width="200px"
               alt={company.title}
+              fallback={<ImageFallback w="200px" h="150px" />}
             />
           ) : (
             <div className="post__cover--none" />
@@ -83,7 +87,7 @@ export default function ProjectSlugRoute(
               </Link>
             )}
           </div>
-        </Box>
+        </Card>
       </section>
     </Container>
   )

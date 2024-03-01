@@ -1,8 +1,9 @@
+import { Heading, Stack } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
 
 import CompanyCard from '~/components/CompanyCard'
-import Container from '~/components/Container'
+import { Container } from '~/components/Container'
 import Welcome from '~/components/Welcome'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
@@ -36,15 +37,20 @@ export default function IndexPage(
   const [companies] = useLiveQuery<Company[]>(props.companies, companiesQuery)
   return (
     <Container>
-      <section>
+      <Stack>
         {companies.length ? (
-          companies.map((company) => (
-            <CompanyCard key={company._id} company={company} />
-          ))
+          <>
+            <Heading as="h1" size="sm">
+              Descubre las companias que apoyan el proyecto
+            </Heading>
+            {companies.map((company) => (
+              <CompanyCard key={company._id} company={company} />
+            ))}
+          </>
         ) : (
           <Welcome />
         )}
-      </section>
+      </Stack>
     </Container>
   )
 }

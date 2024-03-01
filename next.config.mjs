@@ -1,7 +1,7 @@
 import {withSentryConfig} from '@sentry/nextjs';
 /** @type {import('next').NextConfig} */
 const config = {
-  images: { remotePatterns: [{ hostname: 'cdn.sanity.io' }] },
+  images: { remotePatterns: [{ hostname: 'cdn.sanity.io' }], domains: ['lectoresurbanos.com'], },
 }
 
 export default withSentryConfig(config, {

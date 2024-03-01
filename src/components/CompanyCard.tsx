@@ -1,33 +1,38 @@
 'use client'
 
-import { Heading, Image, Link } from '@chakra-ui/react'
+import { Heading, Image, Link, Stack } from '@chakra-ui/react'
 import NextLink from 'next/link'
 
+import { Card } from '~/imports/chakra/components/Card'
+import { ImageFallback } from '~/imports/chakra/components/ImageFallback'
 import { urlForImage } from '~/lib/sanity.image'
 import { type Company } from '~/lib/sanity.queries'
 import { formatDate } from '~/utils'
 
 export default function CompanyCard({ company }: { company: Company }) {
   return (
-    <div className="card">
+    <Card display="flex" p="4" flexDirection={['column', 'row']}>
       {company.mainImage ? (
         <Image
           src={urlForImage(company.mainImage).url()}
           height="auto"
-          width="200px"
+          width={['full', '200px']}
           alt={company.title}
+          fallback={
+            <ImageFallback w={['full', '200px']} h={['auto', '150px']} />
+          }
         />
       ) : (
         <div className="card__cover--none" />
       )}
-      <div className="card__container">
-        <Heading as="h2">
+      <Stack m="4" spacing="1">
+        <Heading as="h2" size="lg" noOfLines={2}>
           <Link href={`/company/${company.slug.current}`} as={NextLink}>
             {company.title}
           </Link>
         </Heading>
-        <p className="card__date">{formatDate(company._createdAt)}</p>
-      </div>
-    </div>
+        <p className="card__date">Desde {formatDate(company._createdAt)}</p>
+      </Stack>
+    </Card>
   )
 }
