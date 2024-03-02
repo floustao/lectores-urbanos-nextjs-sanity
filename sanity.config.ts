@@ -2,6 +2,7 @@
  * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
  */
 
+import { googleMapsInput } from '@sanity/google-maps-input'
 import { scheduledPublishing } from '@sanity/scheduled-publishing'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
@@ -69,6 +70,9 @@ export default defineConfig({
     visionTool({ defaultApiVersion: apiVersion }),
     media(),
     scheduledPublishing(),
+    googleMapsInput({
+      apiKey: 'AIzaSyBNOTekQyXoGoqi44afp_wkYBV8ALmcaaA',
+    }),
   ],
   studio: {
     components: {

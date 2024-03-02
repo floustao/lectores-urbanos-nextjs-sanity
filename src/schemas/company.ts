@@ -43,6 +43,11 @@ export default defineType({
       to: [{ type: 'book' }],
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'location',
+      title: 'Location',
+      type: 'geopoint',
+    }),
   ],
   preview: {
     select: {
