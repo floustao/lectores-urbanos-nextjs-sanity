@@ -1,7 +1,7 @@
 import '~/styles/global.css'
 
 import type { AppProps } from 'next/app'
-import { IBM_Plex_Mono, Inter, PT_Serif } from 'next/font/google'
+import { Lato } from 'next/font/google'
 import Head from 'next/head'
 import { lazy } from 'react'
 
@@ -14,23 +14,10 @@ export interface SharedPageProps {
 
 const PreviewProvider = lazy(() => import('~/components/PreviewProvider'))
 
-const mono = IBM_Plex_Mono({
-  variable: '--font-family-mono',
-  subsets: ['latin'],
-  weight: ['500', '700'],
-})
-
-const sans = Inter({
-  variable: '--font-family-sans',
-  subsets: ['latin'],
-  weight: ['500', '700', '800'],
-})
-
-const serif = PT_Serif({
-  variable: '--font-family-serif',
+const lato = Lato({
+  weight: ['100', '300', '400', '700', '900'],
   style: ['normal', 'italic'],
   subsets: ['latin'],
-  weight: ['400', '700'],
 })
 
 export default function App({
@@ -43,23 +30,16 @@ export default function App({
       <Head>
         <title>Lectores urbanos, primera biblioteca de Mexico</title>
       </Head>
-      <style jsx global>
-        {`
-          :root {
-            --font-family-sans: ${sans.style.fontFamily};
-            --font-family-serif: ${serif.style.fontFamily};
-            --font-family-mono: ${mono.style.fontFamily};
-          }
-        `}
-      </style>
       <ChakraProviders>
-        {draftMode ? (
-          <PreviewProvider token={token}>
+        <div className={lato.className}>
+          {draftMode ? (
+            <PreviewProvider token={token}>
+              <Component {...pageProps} />
+            </PreviewProvider>
+          ) : (
             <Component {...pageProps} />
-          </PreviewProvider>
-        ) : (
-          <Component {...pageProps} />
-        )}
+          )}
+        </div>
       </ChakraProviders>
     </>
   )

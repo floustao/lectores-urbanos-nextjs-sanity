@@ -5,7 +5,7 @@ export const BookIcon: React.FC<IconProps> = ({ ...props }) => {
   return (
     <Icon width="1em" height="1em" viewBox="0 0 64 64" {...props}>
       <svg
-        enable-background="new 0 0 64 64"
+        enableBackground="new 0 0 64 64"
         height="64px"
         id="Layer_1"
         version="1.1"
