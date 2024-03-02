@@ -3,8 +3,9 @@ import {withSentryConfig} from '@sentry/nextjs';
 const config = {
   images: { remotePatterns: [{ hostname: 'cdn.sanity.io' }], domains: ['lectoresurbanos.com'], },
   i18n: {
-    locales: ['en', 'es-MX'],
+    locales: ['en-US', 'es-MX'],
     defaultLocale: 'es-MX',
+    localeDetection: false
   }
 }
 

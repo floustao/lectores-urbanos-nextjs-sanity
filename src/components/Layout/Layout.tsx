@@ -81,17 +81,27 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
                 <NextLink
                   passHref
                   href="https://www.facebook.com/lectoresurbanos"
+                  legacyBehavior
                 >
                   <Link isExternal>
-                    <FacebookIcon boxSize="8" color="primary.500" />
+                    <FacebookIcon
+                      boxSize="10"
+                      color="primary.500"
+                      aria-label="facebook"
+                    />
                   </Link>
                 </NextLink>
                 <NextLink
                   passHref
                   href="https://www.instagram.com/lectores.urbanos/"
+                  legacyBehavior
                 >
                   <Link isExternal>
-                    <InstagramIcon boxSize="8" color="primary.500" />
+                    <InstagramIcon
+                      boxSize="10"
+                      color="primary.500"
+                      aria-label="instagram"
+                    />
                   </Link>
                 </NextLink>
               </Stack>
