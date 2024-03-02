@@ -78,6 +78,7 @@ export default function ProjectSlugRoute(
           <Stack justify="center" align="center" spacing="8">
             {company.mainImage && (
               <Image
+                loading="lazy"
                 src={urlForImage(company.mainImage).url()}
                 height="auto"
                 width="400px"

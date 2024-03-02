@@ -11,6 +11,7 @@ import {
   IframeOptions,
 } from 'sanity-plugin-iframe-pane'
 import { previewUrl } from 'sanity-plugin-iframe-pane/preview-url'
+import { media, mediaAssetSource } from 'sanity-plugin-media'
 
 // see https://www.sanity.io/docs/api-versioning for how versioning works
 import {
@@ -65,6 +66,7 @@ export default defineConfig({
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: apiVersion }),
+    media(),
   ],
   studio: {
     components: {

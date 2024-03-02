@@ -1,13 +1,21 @@
 'use client'
 
-import { Box, Container, HStack, Link, Stack, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Center,
+  Container,
+  HStack,
+  Link,
+  Stack,
+  Text,
+} from '@chakra-ui/react'
 import NextImage from 'next/image'
 import NextLink from 'next/link'
 import { PropsWithChildren } from 'react'
 
 import { HamburgerNavigationMenu } from '~/imports/chakra/components/HamburgerNavigationMenu'
 
-import { BookStack, LoveIcon } from './assets'
+import { BookStack, FacebookIcon, InstagramIcon, LoveIcon } from './assets'
 
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -30,14 +38,15 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
             <NextImage
               src="https://lectoresurbanos.com/assets/images/logo.png"
               alt="go to homepage"
-              width="150"
-              height="150"
+              width={150}
+              height={150}
+              priority
             />
           </Link>
 
           <HamburgerNavigationMenu>
             <Link href="/" as={NextLink} w="full" textAlign="center">
-              Home
+              Inicio
             </Link>
             <Link
               href="/studio/structure"
@@ -55,12 +64,39 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
         <Box as="footer" gridArea="footer">
           <Stack spacing="8" justify="center" align="center">
             <Stack spacing="0" justify="center" align="center">
-              <NextImage src={BookStack} alt="books" width="400" />
+              <NextImage
+                src={BookStack}
+                alt="books"
+                width="400"
+                loading="lazy"
+              />
               <Text>Juntos convertiremos a Mexico</Text>
               <Text fontWeight="semibold">
                 en el Primer Pais Biblioteco del Mundo
               </Text>
             </Stack>
+
+            <Center>
+              <Stack direction="row" spacing="5">
+                <NextLink
+                  passHref
+                  href="https://www.facebook.com/lectoresurbanos"
+                >
+                  <Link isExternal>
+                    <FacebookIcon boxSize="8" color="primary.500" />
+                  </Link>
+                </NextLink>
+                <NextLink
+                  passHref
+                  href="https://www.instagram.com/lectores.urbanos/"
+                >
+                  <Link isExternal>
+                    <InstagramIcon boxSize="8" color="primary.500" />
+                  </Link>
+                </NextLink>
+              </Stack>
+            </Center>
+
             <Text
               fontSize="xs"
               display="flex"

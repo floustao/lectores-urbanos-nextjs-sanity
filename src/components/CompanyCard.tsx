@@ -14,6 +14,7 @@ export default function CompanyCard({ company }: { company: Company }) {
     <Card display="flex" p="4" flexDirection={['column', 'row']}>
       {company.mainImage ? (
         <Image
+          loading="lazy"
           src={urlForImage(company.mainImage).url()}
           height="auto"
           width={['full', '200px']}

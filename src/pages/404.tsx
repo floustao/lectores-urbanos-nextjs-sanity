@@ -16,7 +16,12 @@ export default function Custom404() {
         height="full"
         overflow="hidden"
       >
-        <NextImage src={PaperMix} alt="books" className="fourofour" />
+        <NextImage
+          src={PaperMix}
+          alt="books"
+          className="fourofour"
+          loading="lazy"
+        />
         <Stack justify="center" align="center">
           <Text fontSize="5xl" fontWeight="bold" textAlign="center">
             404 <br /> Te hemos perdido!
