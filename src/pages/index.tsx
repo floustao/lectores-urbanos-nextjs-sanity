@@ -1,4 +1,4 @@
-import { Heading, Stack } from '@chakra-ui/react'
+import { Grid, Heading, Stack } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
 
@@ -42,9 +42,14 @@ export default function IndexPage(
           <Heading as="h1" size="sm">
             Descubre las companias que apoyan el proyecto
           </Heading>
-          {companies.map((company) => (
-            <CompanyCard key={company._id} company={company} />
-          ))}
+          <Grid
+            gap="4"
+            gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
+          >
+            {companies.map((company) => (
+              <CompanyCard key={company._id} company={company} />
+            ))}
+          </Grid>
         </Stack>
       ) : (
         <Welcome />

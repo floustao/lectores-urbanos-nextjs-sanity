@@ -1,8 +1,16 @@
 import { Link } from '@chakra-ui/next-js'
-import { Heading, HStack, Image, Stack, Text } from '@chakra-ui/react'
+import {
+  Heading,
+  HStack,
+  Image,
+  LinkBox,
+  LinkOverlay,
+  Stack,
+  Text,
+} from '@chakra-ui/react'
 import React from 'react'
 
-import { Card } from '~/imports/chakra/components/Card'
+import { CustomCard } from '~/imports/chakra/components/CustomCard'
 import { ImageFallback } from '~/imports/chakra/components/ImageFallback'
 import { BookIcon } from '~/imports/chakra/icons'
 import { getClient } from '~/lib/sanity.client'
@@ -27,25 +35,34 @@ export default function CompanyCard({ company }: { company: Company }) {
   }, [company.book._ref])
 
   return (
-    <Card display="flex" p="4" flexDirection={['column', 'row']}>
-      {company.mainImage ? (
-        <Image
-          loading="lazy"
-          src={urlForImage(company.mainImage).url()}
-          height="auto"
-          width={['full', '180px']}
-          objectFit="contain"
-          alt={company.title}
-          fallback={
-            <ImageFallback w={['full', '200px']} h={['auto', '150px']} />
-          }
-        />
-      ) : (
-        <div className="card__cover--none" />
-      )}
+    <LinkBox
+      as={CustomCard}
+      display="flex"
+      p="4"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      _hover={{
+        bg: 'gray.50',
+        cursor: 'pointer',
+        transition: 'background-color 0.5s ease-in-out',
+      }}
+    >
+      <Image
+        loading="lazy"
+        src={urlForImage(company?.mainImage)?.url()}
+        height={['180px']}
+        width={['180px']}
+        objectFit="contain"
+        alt={company.title}
+        fallback={<ImageFallback w={['180px']} h={['180px']} />}
+      />
+
       <Stack m="4" spacing="1">
         <Heading size="md" noOfLines={2}>
-          <Link href={`/company/${company.slug.current}`}>{company.title}</Link>
+          <LinkOverlay as={Link} href={`/company/${company.slug.current}`}>
+            {company.title}
+          </LinkOverlay>
         </Heading>
         {book ? (
           <HStack>
@@ -56,6 +73,6 @@ export default function CompanyCard({ company }: { company: Company }) {
           <Text>No hay libro asignado</Text>
         )}
       </Stack>
-    </Card>
+    </LinkBox>
   )
 }

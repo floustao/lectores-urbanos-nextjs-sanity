@@ -7,7 +7,7 @@ import { CompanyName } from '~/components/CompanyName'
 import GoogleMaps from '~/components/GoogleMaps'
 import { Layout } from '~/components/Layout'
 import { NextMonth } from '~/components/NextMonth'
-import { Card } from '~/imports/chakra/components/Card'
+import { CustomCard } from '~/imports/chakra/components/CustomCard'
 import { BookIcon } from '~/imports/chakra/icons'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
@@ -76,12 +76,12 @@ export default function ProjectSlugRoute(
               Proxima actualizacion el primero de <NextMonth />
             </Text>
 
-            <Card bg="primary.500" as={HStack}>
+            <CustomCard bg="primary.500" as={HStack}>
               <BookIcon boxSize={6} color="white" />
               <Link isExternal href={props.book.url} color="white">
                 {props.book.title} de {props.book.author}
               </Link>
-            </Card>
+            </CustomCard>
 
             {company?.location && (
               <Stack>
