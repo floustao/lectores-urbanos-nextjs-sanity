@@ -6,7 +6,9 @@ export const useCdn = false
  */
 
 export const dataset = assertValue(
-  process.env.NEXT_PUBLIC_SANITY_DATASET,
+  process.env.NODE_ENV === 'production'
+    ? process.env.NEXT_PUBLIC_SANITY_PRODUCTION_DATASET
+    : process.env.NEXT_PUBLIC_SANITY_DEV_DATASET,
   'Missing environment variable: NEXT_PUBLIC_SANITY_DATASET',
 )
 
