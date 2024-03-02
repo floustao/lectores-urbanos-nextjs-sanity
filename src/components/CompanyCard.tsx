@@ -2,12 +2,12 @@ import { Link } from '@chakra-ui/next-js'
 import {
   Heading,
   HStack,
+  Image,
   LinkBox,
   LinkOverlay,
   Stack,
   Text,
 } from '@chakra-ui/react'
-import NextImage from 'next/image'
 import React from 'react'
 
 import { CustomCard } from '~/imports/chakra/components/CustomCard'
@@ -47,12 +47,12 @@ export default function CompanyCard({ company }: { company: Company }) {
         transition: 'background-color 0.5s ease-in-out',
       }}
     >
-      <NextImage
+      <Image
         src={urlForImage(company.mainImage).url()}
         alt={company.title}
         width={180}
         height={180}
-        quality={80}
+        objectFit="contain"
       />
 
       <Stack m="4" spacing="1">
