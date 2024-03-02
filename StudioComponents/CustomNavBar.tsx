@@ -1,4 +1,4 @@
-import { Card, Flex, Inline, Stack, Text } from '@sanity/ui'
+import { Card, Flex, Stack, Text } from '@sanity/ui'
 import { NavbarProps, useWorkspace } from 'sanity'
 
 import UpdateCompaniesButton from './UpdateCompaniesButton'
