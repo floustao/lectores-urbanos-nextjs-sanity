@@ -1,5 +1,3 @@
-'use client'
-
 import { Icon, IconProps } from '@chakra-ui/react'
 import * as React from 'react'
 

@@ -48,6 +48,11 @@ export default defineType({
       title: 'Location',
       type: 'geopoint',
     }),
+    defineField({
+      name: 'url',
+      title: 'url',
+      type: 'url',
+    }),
   ],
   preview: {
     select: {

@@ -1,6 +1,6 @@
-import { Flex, Link, Stack, Text } from '@chakra-ui/react'
+import { Link } from '@chakra-ui/next-js'
+import { Flex, Stack, Text } from '@chakra-ui/react'
 import NextImage from 'next/image'
-import NextLink from 'next/link'
 
 import { Layout } from '~/components/Layout'
 
@@ -19,15 +19,22 @@ export default function Custom404() {
         <NextImage
           src={PaperMix}
           alt="books"
-          className="fourofour"
           loading="lazy"
+          style={{
+            opacity: 0.1,
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }}
         />
         <Stack justify="center" align="center">
           <Text fontSize="5xl" fontWeight="bold" textAlign="center">
             404 <br /> Te hemos perdido!
           </Text>
-          <Link href="/" as={NextLink} zIndex="2" fontSize="xl">
-            Regresame al inicio
+          <Link href="/" zIndex="2" fontSize="xl">
+            Regresa al inicio
           </Link>
         </Stack>
       </Flex>

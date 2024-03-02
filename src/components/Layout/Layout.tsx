@@ -1,21 +1,13 @@
 'use client'
-
-import {
-  Box,
-  Center,
-  Container,
-  HStack,
-  Link,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
+import { Link } from '@chakra-ui/next-js'
+import { Box, Center, Container, HStack, Stack, Text } from '@chakra-ui/react'
 import NextImage from 'next/image'
-import NextLink from 'next/link'
 import { PropsWithChildren } from 'react'
 
 import { HamburgerNavigationMenu } from '~/imports/chakra/components/HamburgerNavigationMenu'
+import { FacebookIcon, InstagramIcon, LoveIcon } from '~/imports/chakra/icons'
 
-import { BookStack, FacebookIcon, InstagramIcon, LoveIcon } from './assets'
+import { BookStack } from './assets'
 
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -34,7 +26,7 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
         p="8"
       >
         <HStack justify="space-between" as="header" gridArea="header">
-          <Link className="header__title" href="/" as={NextLink}>
+          <Link className="header__title" href="/">
             <NextImage
               src="https://lectoresurbanos.com/assets/images/logo.png"
               alt="go to homepage"
@@ -45,15 +37,10 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
           </Link>
 
           <HamburgerNavigationMenu>
-            <Link href="/" as={NextLink} w="full" textAlign="center">
+            <Link href="/" w="full" textAlign="center">
               Inicio
             </Link>
-            <Link
-              href="/studio/structure"
-              as={NextLink}
-              w="full"
-              textAlign="center"
-            >
+            <Link href="/studio/structure" w="full" textAlign="center">
               Studio
             </Link>
           </HamburgerNavigationMenu>
@@ -78,32 +65,27 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
 
             <Center>
               <Stack direction="row" spacing="5">
-                <NextLink
-                  passHref
+                <Link
+                  isExternal
                   href="https://www.facebook.com/lectoresurbanos"
-                  legacyBehavior
                 >
-                  <Link isExternal>
-                    <FacebookIcon
-                      boxSize="10"
-                      color="primary.500"
-                      aria-label="facebook"
-                    />
-                  </Link>
-                </NextLink>
-                <NextLink
-                  passHref
+                  <FacebookIcon
+                    boxSize="10"
+                    color="primary.500"
+                    aria-label="facebook"
+                  />
+                </Link>
+
+                <Link
+                  isExternal
                   href="https://www.instagram.com/lectores.urbanos/"
-                  legacyBehavior
                 >
-                  <Link isExternal>
-                    <InstagramIcon
-                      boxSize="10"
-                      color="primary.500"
-                      aria-label="instagram"
-                    />
-                  </Link>
-                </NextLink>
+                  <InstagramIcon
+                    boxSize="10"
+                    color="primary.500"
+                    aria-label="instagram"
+                  />
+                </Link>
               </Stack>
             </Center>
 

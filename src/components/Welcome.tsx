@@ -1,12 +1,5 @@
-import {
-  Heading,
-  Link,
-  ListItem,
-  Stack,
-  Text,
-  UnorderedList,
-} from '@chakra-ui/react'
-import NextLink from 'next/link'
+import { Link } from '@chakra-ui/next-js'
+import { Heading, ListItem, Stack, Text, UnorderedList } from '@chakra-ui/react'
 
 export default function Welcome() {
   return (
@@ -25,18 +18,14 @@ export default function Welcome() {
         </ListItem>
         <ListItem>
           Explorar la documentacion de{' '}
-          <Link href="https://www.sanity.io/docs" isExternal as={NextLink}>
+          <Link href="https://www.sanity.io/docs" isExternal>
             Sanity
           </Link>{' '}
           que te permite mantener la applicacion sin codigo.
         </ListItem>
         <ListItem>
           Conocer y comunicar con{' '}
-          <Link
-            href="https://www.sanity.io/exchange/community"
-            isExternal
-            as={NextLink}
-          >
+          <Link href="https://www.sanity.io/exchange/community" isExternal>
             la comunidad de Sanity
           </Link>
           .

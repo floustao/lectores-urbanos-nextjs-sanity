@@ -1,5 +1,3 @@
-'use client'
-
 import { Center, CenterProps } from '@chakra-ui/react'
 import * as React from 'react'
 

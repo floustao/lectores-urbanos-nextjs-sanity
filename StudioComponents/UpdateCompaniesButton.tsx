@@ -1,5 +1,3 @@
-'use client'
-
 import { Button, useToast } from '@chakra-ui/react'
 import React from 'react'
 

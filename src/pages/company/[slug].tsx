@@ -1,31 +1,23 @@
-'use client'
-
-import {
-  Box,
-  chakra,
-  Heading,
-  Image,
-  Link,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
+import { Link } from '@chakra-ui/next-js'
+import { Box, chakra, Heading, HStack, Stack, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
 
+import { CompanyName } from '~/components/CompanyName'
+import GoogleMaps from '~/components/GoogleMaps'
 import { Layout } from '~/components/Layout'
 import { NextMonth } from '~/components/NextMonth'
 import { Card } from '~/imports/chakra/components/Card'
-import { ImageFallback } from '~/imports/chakra/components/ImageFallback'
+import { BookIcon } from '~/imports/chakra/icons'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
-import { urlForImage } from '~/lib/sanity.image'
 import {
   type Book,
   type Company,
+  companyBySlugQuery,
   companySlugsQuery,
   getBook,
-  getPost,
-  postBySlugQuery,
+  getCompany,
 } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 
@@ -41,7 +33,7 @@ export const getStaticProps: GetStaticProps<
   Query
 > = async ({ draftMode = false, params = {} }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const company = await getPost(client, params.slug)
+  const company = await getCompany(client, params.slug)
 
   if (!company) {
     return {
@@ -63,7 +55,7 @@ export const getStaticProps: GetStaticProps<
 export default function ProjectSlugRoute(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const [company] = useLiveQuery(props.company, postBySlugQuery, {
+  const [company] = useLiveQuery(props.company, companyBySlugQuery, {
     slug: props.company.slug.current,
   })
 
@@ -76,18 +68,6 @@ export default function ProjectSlugRoute(
 
         <Box as="section">
           <Stack justify="center" align="center" spacing="8">
-            {company.mainImage && (
-              <Image
-                loading="lazy"
-                src={urlForImage(company.mainImage).url()}
-                height="auto"
-                width="400px"
-                alt={company.title}
-                fallback={<ImageFallback w="200px" h="150px" />}
-                shadow="base"
-              />
-            )}
-
             <Text textAlign="center">
               <chakra.span fontWeight="bold">
                 {company.title[0].toUpperCase() + company.title.slice(1)}
@@ -96,11 +76,22 @@ export default function ProjectSlugRoute(
               Proxima actualizacion el primero de <NextMonth />
             </Text>
 
-            <Card bg="primary.500">
+            <Card bg="primary.500" as={HStack}>
+              <BookIcon boxSize={8} color="white" />
               <Link isExternal href={props.book.url} color="white">
                 {props.book.title} de {props.book.author}
               </Link>
             </Card>
+
+            {company?.location && (
+              <Stack>
+                <Text>
+                  Descubre <CompanyName company={company} /> aqui:
+                </Text>
+
+                <GoogleMaps location={company.location} />
+              </Stack>
+            )}
           </Stack>
         </Box>
       </Stack>

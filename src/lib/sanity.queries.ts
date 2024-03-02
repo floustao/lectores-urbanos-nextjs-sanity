@@ -1,20 +1,21 @@
+import { Geopoint } from '@sanity/google-maps-input'
 import type { ImageAsset, Slug } from '@sanity/types'
 import groq from 'groq'
 import { type SanityClient } from 'next-sanity'
 
-export const companiesQuery = groq`*[_type == "company" && defined(slug.current)] | order(_createdAt desc)`
+export const companiesQuery = groq`*[_type == "company" && !(_id in path("drafts.**")) && !(_originalId in path("drafts.**")) && defined(slug.current)] | order(_createdAt desc)`
 
 export async function getCompanies(client: SanityClient): Promise<Company[]> {
   return await client.fetch(companiesQuery)
 }
 
-export const postBySlugQuery = groq`*[_type == "company" && slug.current == $slug][0]`
+export const companyBySlugQuery = groq`*[_type == "company" && slug.current == $slug][0]`
 
-export async function getPost(
+export async function getCompany(
   client: SanityClient,
   slug: string,
 ): Promise<Company> {
-  return await client.fetch(postBySlugQuery, {
+  return await client.fetch(companyBySlugQuery, {
     slug,
   })
 }
@@ -53,4 +54,6 @@ export type Company = {
   slug: Slug
   book: Reference<Book>
   mainImage?: ImageAsset
+  location: Geopoint
+  url: string
 }

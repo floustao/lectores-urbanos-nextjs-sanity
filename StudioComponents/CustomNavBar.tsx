@@ -1,6 +1,5 @@
-import { Link } from '@chakra-ui/react'
+import { Link } from '@chakra-ui/next-js'
 import { Card, Flex, Stack, Text } from '@sanity/ui'
-import NextLink from 'next/link'
 import { NavbarProps, useWorkspace } from 'sanity'
 
 import UpdateCompaniesButton from './UpdateCompaniesButton'
@@ -17,7 +16,7 @@ export function CustomNavBar(props: NavbarProps) {
               Using the <b>{dataset}</b> dataset
             </Text>
 
-            <Link as={NextLink} href="/" color="white">
+            <Link href="/" color="white">
               Go back to website
             </Link>
 
