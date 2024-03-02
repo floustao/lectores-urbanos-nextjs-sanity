@@ -4,12 +4,11 @@ import {
   HStack,
   LinkBox,
   LinkOverlay,
-  Skeleton,
   Stack,
   Text,
 } from '@chakra-ui/react'
 import NextImage from 'next/image'
-import React, { Suspense } from 'react'
+import React from 'react'
 
 import { CustomCard } from '~/imports/chakra/components/CustomCard'
 import { BookIcon } from '~/imports/chakra/icons'
@@ -48,15 +47,13 @@ export default function CompanyCard({ company }: { company: Company }) {
         transition: 'background-color 0.5s ease-in-out',
       }}
     >
-      <Suspense fallback={<Skeleton height="180px" width="180px" />}>
-        <NextImage
-          src={urlForImage(company.mainImage).url()}
-          alt={company.title}
-          width={180}
-          height={180}
-          style={{ objectFit: 'contain' }}
-        />
-      </Suspense>
+      <NextImage
+        src={urlForImage(company.mainImage).url()}
+        alt={company.title}
+        width={180}
+        height={180}
+        style={{ objectFit: 'contain' }}
+      />
 
       <Stack m="4" spacing="1">
         <Heading size="md" noOfLines={2}>

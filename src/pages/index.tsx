@@ -1,10 +1,18 @@
-import { Grid, Heading, Stack } from '@chakra-ui/react'
+import {
+  Grid,
+  Heading,
+  Skeleton,
+  SkeletonText,
+  Stack,
+  Text,
+} from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
 
 import CompanyCard from '~/components/CompanyCard'
+import { CompanyCardSkeleton } from '~/components/CompanyCardSkeleton'
 import { Layout } from '~/components/Layout'
-import Welcome from '~/components/Welcome'
+import { CustomCard } from '~/imports/chakra/components/CustomCard'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 import {
@@ -37,11 +45,11 @@ export default function IndexPage(
   const [companies] = useLiveQuery<Company[]>(props.companies, companiesQuery)
   return (
     <Layout>
-      {companies.length ? (
-        <Stack>
-          <Heading as="h1" size="sm">
-            Descubre las companias que apoyan el proyecto
-          </Heading>
+      <Stack spacing="8">
+        <Heading as="h1" size="sm">
+          Descubre las companias que apoyan el proyecto
+        </Heading>
+        {companies.length ? (
           <Grid
             gap="4"
             gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
@@ -50,10 +58,19 @@ export default function IndexPage(
               <CompanyCard key={company._id} company={company} />
             ))}
           </Grid>
-        </Stack>
-      ) : (
-        <Welcome />
-      )}
+        ) : (
+          <Grid
+            gap="4"
+            gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
+          >
+            <CompanyCardSkeleton />
+            <CompanyCardSkeleton />
+            <CompanyCardSkeleton />
+            <CompanyCardSkeleton />
+            <CompanyCardSkeleton />
+          </Grid>
+        )}
+      </Stack>
     </Layout>
   )
 }
