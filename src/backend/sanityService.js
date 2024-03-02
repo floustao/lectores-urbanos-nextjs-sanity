@@ -5,9 +5,10 @@ import { getClient } from '~/lib/sanity.client'
 export async function updateCompanyBooks() {
   const client = getClient({ token: writeToken })
   try {
-    const companies = await client.fetch('*[_type == "company"]');
+    const nonDraftsCompanies = await client.fetch('*[_type == "company" && !(_id in path("drafts.**")) && !(_originalId in path("drafts.**"))]');
+    console.log({nonDraftsCompanies})
 
-    for (const company of companies) {
+    for (const company of nonDraftsCompanies) {
       const newBookRef = await selectRandomBook();
 
       // Update the company in Sanity with the new book reference
@@ -27,6 +28,6 @@ async function selectRandomBook() {
   const client = getClient({ token: readToken })
   const books = await client.fetch('*[_type == "book"]');
   const randomBookIndex = Math.floor(Math.random() * books.length);
-  console.log({randomBookIndex})
+
   return { _type: 'reference', _ref: books[randomBookIndex]._id };
 }
