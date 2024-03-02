@@ -51,7 +51,7 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
         <Box as="footer" gridArea="footer">
           <Stack spacing="8" justify="center" align="center">
             <Stack spacing="0" justify="center" align="center">
-              <NextImage src={BookStack} alt="books" width="400" quality={80} />
+              {/* <NextImage src={BookStack} alt="books" width="400" quality={80} /> */}
               <Text>Juntos convertiremos a Mexico</Text>
               <Text fontWeight="semibold">
                 en el Primer Pais Biblioteco del Mundo
