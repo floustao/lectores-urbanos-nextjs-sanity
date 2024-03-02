@@ -2,17 +2,16 @@ import { Link } from '@chakra-ui/next-js'
 import {
   Heading,
   HStack,
-  Image,
   LinkBox,
   LinkOverlay,
+  Skeleton,
   Stack,
   Text,
 } from '@chakra-ui/react'
 import NextImage from 'next/image'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 import { CustomCard } from '~/imports/chakra/components/CustomCard'
-import { ImageFallback } from '~/imports/chakra/components/ImageFallback'
 import { BookIcon } from '~/imports/chakra/icons'
 import { getClient } from '~/lib/sanity.client'
 import { urlForImage } from '~/lib/sanity.image'
@@ -49,17 +48,15 @@ export default function CompanyCard({ company }: { company: Company }) {
         transition: 'background-color 0.5s ease-in-out',
       }}
     >
-      {company?.mainImage ? (
+      <Suspense fallback={<Skeleton height="180px" width="180px" />}>
         <NextImage
-          src={urlForImage(company?.mainImage)?.url()}
+          src={urlForImage(company.mainImage).url()}
           alt={company.title}
           width={180}
           height={180}
           style={{ objectFit: 'contain' }}
         />
-      ) : (
-        <ImageFallback w="180px" h="180px" />
-      )}
+      </Suspense>
 
       <Stack m="4" spacing="1">
         <Heading size="md" noOfLines={2}>
