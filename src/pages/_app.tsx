@@ -29,6 +29,10 @@ export default function App({
     <>
       <Head>
         <title>Lectores urbanos, primera biblioteca de Mexico</title>
+        <meta
+          name="description"
+          content="Una empresa social que tiene como objetivo incentivar el pensamiento crítico; teniendo como estrategia central el fomento del hábito de la lectura, el arte y los valores sociales."
+        />
       </Head>
       <ChakraProviders>
         <div className={lato.className}>
