@@ -28,6 +28,7 @@ export default function Custom404() {
             left: 0,
             right: 0,
           }}
+          quality={80}
         />
         <Stack justify="center" align="center">
           <Text fontSize="5xl" fontWeight="bold" textAlign="center">

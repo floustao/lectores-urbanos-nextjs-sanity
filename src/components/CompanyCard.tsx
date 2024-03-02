@@ -52,7 +52,7 @@ export default function CompanyCard({ company }: { company: Company }) {
         alt={company.title}
         width={180}
         height={180}
-        style={{ objectFit: 'contain' }}
+        quality={80}
       />
 
       <Stack m="4" spacing="1">
