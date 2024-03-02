@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
+import NextImage from 'next/image'
 import React from 'react'
 
 import { CustomCard } from '~/imports/chakra/components/CustomCard'
@@ -48,15 +49,17 @@ export default function CompanyCard({ company }: { company: Company }) {
         transition: 'background-color 0.5s ease-in-out',
       }}
     >
-      <Image
-        loading="lazy"
-        src={urlForImage(company?.mainImage)?.url()}
-        height={['180px']}
-        width={['180px']}
-        objectFit="contain"
-        alt={company.title}
-        fallback={<ImageFallback w={['180px']} h={['180px']} />}
-      />
+      {company?.mainImage ? (
+        <NextImage
+          src={urlForImage(company?.mainImage)?.url()}
+          alt={company.title}
+          width={180}
+          height={180}
+          style={{ objectFit: 'contain' }}
+        />
+      ) : (
+        <ImageFallback w="180px" h="180px" />
+      )}
 
       <Stack m="4" spacing="1">
         <Heading size="md" noOfLines={2}>
