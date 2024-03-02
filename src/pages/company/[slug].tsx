@@ -77,7 +77,7 @@ export default function ProjectSlugRoute(
             </Text>
 
             <Card bg="primary.500" as={HStack}>
-              <BookIcon boxSize={8} color="white" />
+              <BookIcon boxSize={6} color="white" />
               <Link isExternal href={props.book.url} color="white">
                 {props.book.title} de {props.book.author}
               </Link>

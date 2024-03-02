@@ -6,7 +6,6 @@ export async function updateCompanyBooks() {
   const client = getClient({ token: writeToken })
   try {
     const nonDraftsCompanies = await client.fetch('*[_type == "company" && !(_id in path("drafts.**")) && !(_originalId in path("drafts.**"))]');
-    console.log({nonDraftsCompanies})
 
     for (const company of nonDraftsCompanies) {
       const newBookRef = await selectRandomBook();
