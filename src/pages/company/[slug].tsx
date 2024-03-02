@@ -1,7 +1,17 @@
 import { Link } from '@chakra-ui/next-js'
-import { Box, chakra, Heading, HStack, Stack, Text } from '@chakra-ui/react'
+import {
+  Box,
+  chakra,
+  Heading,
+  HStack,
+  Icon,
+  Image,
+  Stack,
+  Text,
+} from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
+import QrCode from 'react-qr-code'
 
 import { CompanyName } from '~/components/CompanyName'
 import GoogleMaps from '~/components/GoogleMaps'
@@ -76,12 +86,19 @@ export default function ProjectSlugRoute(
               Proxima actualizacion el primero de <NextMonth />
             </Text>
 
-            <CustomCard bg="primary.500" as={HStack}>
-              <BookIcon boxSize={6} color="white" />
-              <Link isExternal href={props.book.url} color="white">
+            <HStack>
+              <BookIcon boxSize={6} color="black" />
+              <Text fontSize="md">
                 {props.book.title} de {props.book.author}
-              </Link>
-            </CustomCard>
+              </Text>
+            </HStack>
+
+            <Link isExternal href={props.book.url}>
+              <QrCode value={props.book.url} color="red" />
+            </Link>
+            <Text fontStyle="italic">
+              Haz clic o escanea el código con tu celular para obtener el libro
+            </Text>
 
             {company?.location && (
               <Stack>

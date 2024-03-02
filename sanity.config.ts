@@ -6,14 +6,14 @@ import { googleMapsInput } from '@sanity/google-maps-input'
 import { scheduledPublishing } from '@sanity/scheduled-publishing'
 import { visionTool } from '@sanity/vision'
 import { defineConfig } from 'sanity'
-import { deskTool } from 'sanity/desk'
+import { structureTool } from 'sanity/structure'
 import {
   defineUrlResolver,
   Iframe,
   IframeOptions,
 } from 'sanity-plugin-iframe-pane'
 import { previewUrl } from 'sanity-plugin-iframe-pane/preview-url'
-import { media, mediaAssetSource } from 'sanity-plugin-media'
+import { media } from 'sanity-plugin-media'
 
 // see https://www.sanity.io/docs/api-versioning for how versioning works
 import {
@@ -44,7 +44,7 @@ export default defineConfig({
   //edit schemas in './src/schemas'
   schema,
   plugins: [
-    deskTool({
+    structureTool({
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
       // You can add any React component to `S.view.component` and it will be rendered in the pane
       // and have access to content in the form in real-time.
