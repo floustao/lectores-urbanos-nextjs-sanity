@@ -44,7 +44,7 @@ export default function IndexPage(
         {companies.length ? (
           <Grid
             gap="4"
-            gridTemplateColumns="repeat(auto-fit, minmax(200px, 1fr))"
+            gridTemplateColumns="repeat(auto-fit, minmax(240px, 1fr))"
           >
             {companies.map((company) => (
               <CompanyCard key={company._id} company={company} />
