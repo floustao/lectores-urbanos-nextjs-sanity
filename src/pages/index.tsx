@@ -1,3 +1,4 @@
+'use client'
 import { Grid, Heading, Stack } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
@@ -43,6 +44,7 @@ export const getStaticProps: GetStaticProps<
       companies,
       books,
     },
+    revalidate: 1,
   }
 }
 
