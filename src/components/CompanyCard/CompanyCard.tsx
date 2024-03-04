@@ -12,26 +12,17 @@ import React from 'react'
 
 import { CustomCard } from '~/imports/chakra/components/CustomCard'
 import { BookIcon } from '~/imports/chakra/icons'
-import { getClient } from '~/lib/sanity.client'
 import { urlForImage } from '~/lib/sanity.image'
-import { type Company, getBook } from '~/lib/sanity.queries'
+import { Book, type Company } from '~/lib/sanity.queries'
 
-export default function CompanyCard({ company }: { company: Company }) {
-  const [book, setBook] = React.useState(null)
-
-  React.useEffect(() => {
-    const client = getClient()
-    const fetchBook = async () => {
-      try {
-        const book = await getBook(client, company.book._ref)
-        setBook(book)
-      } catch (error) {
-        console.error('Error fetching book data:', error)
-      }
-    }
-
-    fetchBook()
-  }, [company.book._ref])
+export function CompanyCard({
+  company,
+  books,
+}: {
+  company: Company
+  books: Record<string, Book>
+}) {
+  const book = books[company.book._ref]
 
   return (
     <LinkBox
@@ -65,11 +56,7 @@ export default function CompanyCard({ company }: { company: Company }) {
         </Heading>
         <HStack>
           <BookIcon boxSize={5} />
-          {book ? (
-            <Text fontStyle="italic">{book?.title}</Text>
-          ) : (
-            <Text>...</Text>
-          )}
+          {book && <Text fontStyle="italic">{book?.title}</Text>}
         </HStack>
       </Stack>
     </LinkBox>
