@@ -39,7 +39,7 @@ export default function CompanyCard({ company }: { company: Company }) {
       display="flex"
       p="4"
       flexDirection="column"
-      justifyContent="center"
+      justifyContent="space-between"
       alignItems="center"
       _hover={{
         bg: 'gray.50',
@@ -47,28 +47,26 @@ export default function CompanyCard({ company }: { company: Company }) {
         transition: 'background-color 0.5s ease-in-out',
       }}
     >
-      <Image
-        src={urlForImage(company.mainImage).url()}
-        alt={company.title}
-        width={180}
-        height={180}
-        objectFit="contain"
-      />
+      <CustomCard shadow="xs">
+        <Image
+          src={urlForImage(company.mainImage).url()}
+          alt={company.title}
+          width={180}
+          height={180}
+          objectFit="contain"
+        />
+      </CustomCard>
 
-      <Stack m="4" spacing="1">
+      <Stack m="4" spacing="1" h="full">
         <Heading size="md" noOfLines={2}>
           <LinkOverlay as={Link} href={`/company/${company.slug.current}`}>
             {company.title}
           </LinkOverlay>
         </Heading>
-        {book ? (
-          <HStack>
-            <BookIcon boxSize={5} />
-            <Text fontStyle="italic">{book.title}</Text>
-          </HStack>
-        ) : (
-          <Text>No hay libro asignado</Text>
-        )}
+        <HStack>
+          <BookIcon boxSize={5} />
+          <Text fontStyle="italic">{book.title}</Text>
+        </HStack>
       </Stack>
     </LinkBox>
   )
