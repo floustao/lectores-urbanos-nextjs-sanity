@@ -1,18 +1,10 @@
-import {
-  Grid,
-  Heading,
-  Skeleton,
-  SkeletonText,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
+import { Grid, Heading, Stack } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
 
 import CompanyCard from '~/components/CompanyCard'
 import { CompanyCardSkeleton } from '~/components/CompanyCardSkeleton'
 import { Layout } from '~/components/Layout'
-import { CustomCard } from '~/imports/chakra/components/CustomCard'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 import {

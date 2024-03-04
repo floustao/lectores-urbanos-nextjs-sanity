@@ -1,14 +1,5 @@
 import { Link } from '@chakra-ui/next-js'
-import {
-  Box,
-  chakra,
-  Heading,
-  HStack,
-  Icon,
-  Image,
-  Stack,
-  Text,
-} from '@chakra-ui/react'
+import { Box, chakra, Heading, HStack, Stack, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
 import QrCode from 'react-qr-code'
@@ -17,7 +8,6 @@ import { CompanyName } from '~/components/CompanyName'
 import GoogleMaps from '~/components/GoogleMaps'
 import { Layout } from '~/components/Layout'
 import { NextMonth } from '~/components/NextMonth'
-import { CustomCard } from '~/imports/chakra/components/CustomCard'
 import { BookIcon } from '~/imports/chakra/icons'
 import { readToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
@@ -103,7 +93,8 @@ export default function ProjectSlugRoute(
             {company?.location && (
               <Stack>
                 <Text>
-                  Descubre <CompanyName company={company} /> aqui:
+                  Si quieres apoyar a <CompanyName company={company} />, visita
+                  aqui:
                 </Text>
 
                 <GoogleMaps location={company.location} />
