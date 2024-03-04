@@ -13,8 +13,8 @@ import React from 'react'
 import { CustomCard } from '~/imports/chakra/components/CustomCard'
 import { BookIcon } from '~/imports/chakra/icons'
 import { getClient } from '~/lib/sanity.client'
-import { urlForImage } from '~/lib/sanity.image'
 import { type Company, getBook } from '~/lib/sanity.queries'
+import { urlFor } from '~/utils'
 
 export default function CompanyCard({ company }: { company: Company }) {
   const [book, setBook] = React.useState(null)
@@ -48,11 +48,13 @@ export default function CompanyCard({ company }: { company: Company }) {
       }}
     >
       <Image
-        src={urlForImage(company.mainImage).url()}
+        src={urlFor(company.mainImage)
+          .height(180)
+          .auto('format')
+          .quality(80)
+          .fit('clip')
+          .url()}
         alt={company.title}
-        width={180}
-        height={180}
-        objectFit="contain"
       />
 
       <Stack m="4" spacing="1">
