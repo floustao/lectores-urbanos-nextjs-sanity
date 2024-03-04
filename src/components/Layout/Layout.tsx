@@ -2,6 +2,7 @@
 import { Link } from '@chakra-ui/next-js'
 import { Box, Center, Container, HStack, Stack, Text } from '@chakra-ui/react'
 import NextImage from 'next/image'
+import React from 'react'
 import { PropsWithChildren } from 'react'
 
 import { HamburgerNavigationMenu } from '~/imports/chakra/components/HamburgerNavigationMenu'
@@ -26,11 +27,12 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
         <HStack justify="space-between" as="header" gridArea="header">
           <Link className="header__title" href="/">
             <NextImage
-              src="https://lectoresurbanos.com/assets/images/logo.png"
+              src="/main-logo.png"
               alt="go to homepage"
               width={150}
               height={150}
               priority
+              style={{ scale: '1.1' }}
             />
           </Link>
 
@@ -49,7 +51,6 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
         <Box as="footer" gridArea="footer">
           <Stack spacing="8" justify="center" align="center">
             <Stack spacing="0" justify="center" align="center">
-              {/* <NextImage src={BookStack} alt="books" width="400" quality={80} /> */}
               <Text>Juntos convertiremos a Mexico</Text>
               <Text fontWeight="semibold">
                 en el Primer Pais Biblioteco del Mundo
