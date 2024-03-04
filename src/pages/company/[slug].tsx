@@ -50,6 +50,7 @@ export const getStaticProps: GetStaticProps<
       company,
       book,
     },
+    revalidate: 1,
   }
 }
 
