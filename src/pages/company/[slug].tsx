@@ -1,3 +1,4 @@
+'use client'
 import { Link } from '@chakra-ui/next-js'
 import { Box, chakra, Heading, HStack, Stack, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
