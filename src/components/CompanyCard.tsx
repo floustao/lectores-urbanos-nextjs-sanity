@@ -65,7 +65,11 @@ export default function CompanyCard({ company }: { company: Company }) {
         </Heading>
         <HStack>
           <BookIcon boxSize={5} />
-          <Text fontStyle="italic">{book.title}</Text>
+          {book ? (
+            <Text fontStyle="italic">{book?.title}</Text>
+          ) : (
+            <Text>...</Text>
+          )}
         </HStack>
       </Stack>
     </LinkBox>
