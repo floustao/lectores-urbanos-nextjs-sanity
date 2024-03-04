@@ -90,7 +90,7 @@ export default function ProjectSlugRoute(
               Haz clic o escanea el código con tu celular para obtener el libro
             </Text>
 
-            {company?.location && (
+            {company?.location ? (
               <Stack>
                 <Text>
                   Si quieres apoyar a <CompanyName company={company} />, visita
@@ -99,7 +99,11 @@ export default function ProjectSlugRoute(
 
                 <GoogleMaps location={company.location} />
               </Stack>
-            )}
+            ) : company.url ? (
+              <Text>
+                Visita <CompanyName company={company} />.
+              </Text>
+            ) : null}
           </Stack>
         </Box>
       </Stack>

@@ -7,8 +7,6 @@ import { PropsWithChildren } from 'react'
 import { HamburgerNavigationMenu } from '~/imports/chakra/components/HamburgerNavigationMenu'
 import { FacebookIcon, InstagramIcon, LoveIcon } from '~/imports/chakra/icons'
 
-import { BookStack } from './assets'
-
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <Container maxW="container.xl">
