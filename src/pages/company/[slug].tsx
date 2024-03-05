@@ -84,7 +84,11 @@ export default function ProjectSlugRoute(
               </Text>
             </HStack>
 
-            <Link isExternal href={props.book.url}>
+            <Link
+              isExternal
+              href={props.book.url}
+              aria-label="Desbloquea el libro escaneando o haciendo clic en el código QR"
+            >
               <QrCode value={props.book.url} color="red" />
             </Link>
             <Text fontStyle="italic">
