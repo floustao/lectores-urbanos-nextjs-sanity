@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<
       companies,
       books,
     },
-    revalidate: 1,
+    revalidate: 10,
   }
 }
 
