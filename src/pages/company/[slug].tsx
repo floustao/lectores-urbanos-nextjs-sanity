@@ -1,4 +1,3 @@
-'use client'
 import { Link } from '@chakra-ui/next-js'
 import { Box, chakra, Heading, HStack, Stack, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
@@ -50,7 +49,7 @@ export const getStaticProps: GetStaticProps<
       company,
       book,
     },
-    revalidate: 1,
+    revalidate: 10,
   }
 }
 

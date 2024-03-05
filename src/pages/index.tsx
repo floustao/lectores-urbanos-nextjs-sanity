@@ -1,4 +1,3 @@
-'use client'
 import { Grid, Heading, Stack } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'

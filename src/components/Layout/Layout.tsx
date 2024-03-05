@@ -1,4 +1,3 @@
-'use client'
 import { Link } from '@chakra-ui/next-js'
 import { Box, Center, Container, HStack, Stack, Text } from '@chakra-ui/react'
 import NextImage from 'next/image'
