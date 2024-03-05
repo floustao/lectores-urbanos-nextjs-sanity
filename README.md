@@ -2,7 +2,7 @@
 
 [Lectores urbanos](https://lectoresurbanos.com/) is a non-profit whose goal is to encourage critical thinking; with the central strategy of promoting the habit of reading, art, and social values. They currently operate in Mexico.
 
-The goal is to allow people to access free online books by scanning a QR code. They could find these QR code by going to their physical school buildings, or buying food from their favourite shops.
+The goal is to allow people to access free online books by scanning a QR code. They could find these QR code by going to their physical school buildings, or buying food from their favourite shops and more.
 
 This web app is a prototype/MVP. It uses [Next.js](https://nextjs.org) for the frontend and [Sanity](https://www.sanity.io/) to handle its content. For the styling we are using [Chakra UI](https://chakra-ui.com) which is very good for accessibility purposes.
 The use of a headless CMS like Sanity is to allow admin to maintain the content without needing programming skills.
