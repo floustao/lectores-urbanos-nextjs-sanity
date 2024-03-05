@@ -89,6 +89,7 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
               align="center"
               gap="1"
               lineHeight="1"
+              paddingBottom="6"
             >
               Hecho con
               <LoveIcon boxSize="3" m="0" p="0" color="red.500" />
