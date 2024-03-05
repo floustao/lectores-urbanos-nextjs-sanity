@@ -1,5 +1,6 @@
 import '~/styles/global.css'
 
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { AppProps } from 'next/app'
 import { Lato } from 'next/font/google'
 import Head from 'next/head'
@@ -43,6 +44,7 @@ export default function App({
           ) : (
             <Component {...pageProps} />
           )}
+          <SpeedInsights />
         </div>
       </ChakraProviders>
     </>
