@@ -88,6 +88,7 @@ export default function ProjectSlugRoute(
               isExternal
               href={props.book.url}
               aria-label="Desbloquea el libro escaneando o haciendo clic en el código QR"
+              _hover={{ opacity: '0.8' }}
             >
               <QrCode value={props.book.url} color="red" />
             </Link>

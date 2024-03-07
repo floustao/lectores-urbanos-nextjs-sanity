@@ -5,7 +5,7 @@ import React from 'react'
 import { PropsWithChildren } from 'react'
 
 import { HamburgerNavigationMenu } from '~/imports/chakra/components/HamburgerNavigationMenu'
-import { FacebookIcon, InstagramIcon, LoveIcon } from '~/imports/chakra/icons'
+import { LoveIcon } from '~/imports/chakra/icons'
 
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -62,10 +62,12 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
                   isExternal
                   href="https://www.facebook.com/lectoresurbanos"
                 >
-                  <FacebookIcon
-                    boxSize="10"
-                    color="primary.500"
-                    aria-label="facebook"
+                  <NextImage
+                    src="/facebook-blue.png"
+                    alt="facebook de lectores urbanos"
+                    width={40}
+                    height={40}
+                    priority
                   />
                 </Link>
 
@@ -73,10 +75,12 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
                   isExternal
                   href="https://www.instagram.com/lectores.urbanos/"
                 >
-                  <InstagramIcon
-                    boxSize="10"
-                    color="primary.500"
-                    aria-label="instagram"
+                  <NextImage
+                    src="/instagram-gradient.png"
+                    alt="instagram de lectores urbanos"
+                    width={40}
+                    height={40}
+                    priority
                   />
                 </Link>
               </Stack>
