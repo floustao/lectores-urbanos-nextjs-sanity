@@ -1,5 +1,5 @@
 import { DownloadIcon } from '@chakra-ui/icons'
-import { Button, Flex, Heading, Stack } from '@chakra-ui/react'
+import { Button, Flex, Heading, Stack, useToast } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import dynamic from 'next/dynamic'
 import { useLiveQuery } from 'next-sanity/preview'
@@ -52,8 +52,9 @@ export const getStaticProps: GetStaticProps<
 export default function ProjectSlugRoute(
   props: InferGetStaticPropsType<typeof getStaticProps>,
 ) {
-  const [pdfData, setPdfData] = React.useState(null)
-  const [pdfUrl, setPdfUrl] = React.useState(null)
+  const toast = useToast()
+  const [pdfFileBase64, setPdfFileBase64] = React.useState<string>(null)
+  const [pdfUrl, setPdfUrl] = React.useState<string>(null)
 
   const [book] = useLiveQuery(props.book, bookBySlugQuery, {
     slug: props.book.slug.current,
@@ -61,23 +62,31 @@ export default function ProjectSlugRoute(
 
   React.useEffect(() => {
     async function fetchPdfUrl() {
-      // Fetch the file object from Sanity
-      const client = getClient()
-      const file = await client.fetch(`*[_id == "${book.file.asset._ref}"][0]`)
+      try {
+        // Fetch the file object from Sanity
+        const client = getClient()
+        const file = await client.fetch(
+          `*[_id == "${book.file.asset._ref}"][0]`,
+        )
 
-      // Extract the URL from the file object
-      if (file?.url) {
-        setPdfUrl(file.url)
-        const response = await fetch(file.url)
-        const data = await response.arrayBuffer()
-        setPdfData(data)
+        // Extract the URL from the file object
+        if (file?.url) {
+          setPdfUrl(file.url)
+          const response = await fetch(file.url)
+          const data = await response.arrayBuffer()
+          const base64String = Buffer.from(data).toString('base64')
+          setPdfFileBase64(base64String)
+        }
+      } catch (error) {
+        console.error('Error fetching PDF:', error)
+        toast({ status: 'error', description: error })
       }
     }
 
     if (book && book.file.asset._ref) {
       fetchPdfUrl()
     }
-  }, [book])
+  }, [book, toast])
 
   return (
     <Layout>
@@ -98,7 +107,9 @@ export default function ProjectSlugRoute(
         </a>
 
         <Flex as="section" justify="center" align="center" shadow="base">
-          <DynamicPDFViewer file={pdfData} />
+          <DynamicPDFViewer
+            file={`data:application/pdf;base64,${pdfFileBase64}`}
+          />
         </Flex>
       </Stack>
     </Layout>
