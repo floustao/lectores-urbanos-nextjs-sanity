@@ -8,14 +8,11 @@ import { Document, Page, pdfjs } from 'react-pdf'
 
 import useResizeObserver from '~/hooks/useResizeObserver'
 
+// Configure PDF.js worker
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.js',
   import.meta.url,
 ).toString()
-
-const options = {
-  cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
-}
 
 const resizeObserverOptions = {}
 
@@ -40,33 +37,29 @@ export default function PDFViewer({ file }: { file: string }) {
 
   useResizeObserver(containerRef, resizeObserverOptions, onResize)
 
-  function onDocumentLoadSuccess({
+  const onDocumentLoadSuccess = ({
     numPages: nextNumPages,
-  }: PDFDocumentProxy): void {
+  }: PDFDocumentProxy): void => {
     setNumPages(nextNumPages)
     setPageNumber(1)
   }
 
-  function changePage(offset) {
+  const changePage = (offset: number) => {
     setPageNumber((prevPageNumber) => prevPageNumber + offset)
   }
 
-  function previousPage() {
+  const previousPage = () => {
     changePage(-1)
   }
 
-  function nextPage() {
+  const nextPage = () => {
     changePage(1)
   }
 
   return (
     <Stack w="full">
       <Flex ref={setContainerRef} justify="center">
-        <Document
-          file={file}
-          onLoadSuccess={onDocumentLoadSuccess}
-          options={options}
-        >
+        <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
           <Page
             pageNumber={pageNumber}
             width={
@@ -84,14 +77,26 @@ export default function PDFViewer({ file }: { file: string }) {
 
       <Stack spacing="2" align="center" p="4">
         <Text>
-          Page {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}
+          Página {pageNumber || (numPages ? 1 : '--')} de {numPages || '--'}
         </Text>
         <HStack>
-          <Button isDisabled={pageNumber <= 1} onClick={previousPage}>
-            Previous
+          <Button
+            isDisabled={pageNumber <= 1}
+            onClick={(e) => {
+              e.preventDefault()
+              previousPage()
+            }}
+          >
+            Anterior
           </Button>
-          <Button isDisabled={pageNumber >= numPages} onClick={nextPage}>
-            Next
+          <Button
+            isDisabled={pageNumber >= numPages}
+            onClick={(e) => {
+              e.preventDefault()
+              nextPage()
+            }}
+          >
+            Siguiente
           </Button>
         </HStack>
       </Stack>

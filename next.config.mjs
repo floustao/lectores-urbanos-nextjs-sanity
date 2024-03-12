@@ -18,7 +18,7 @@ const nextConfig = {
     localeDetection: false,
   },
   webpack: (config) => {
-    config.resolve.alias.canvas = false
+    config.resolve.alias.canvas = false // react-pdf setup
 
     return config
   },

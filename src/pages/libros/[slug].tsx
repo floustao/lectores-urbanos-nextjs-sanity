@@ -53,14 +53,13 @@ export default function ProjectSlugRoute(
 ) {
   const toast = useToast()
   const [pdfFileBase64, setPdfFileBase64] = React.useState<string>(null)
-  const [pdfUrl, setPdfUrl] = React.useState<string>(null)
 
   const [book] = useLiveQuery(props.book, bookBySlugQuery, {
     slug: props.book.slug.current,
   })
 
   React.useEffect(() => {
-    async function fetchPdfUrl() {
+    async function fetchPdfFile() {
       try {
         // Fetch the file object from Sanity
         const client = getClient()
@@ -70,7 +69,6 @@ export default function ProjectSlugRoute(
 
         // Extract the URL from the file object
         if (file?.url) {
-          setPdfUrl(file.url)
           const response = await fetch(file.url)
           const data = await response.arrayBuffer()
           const base64String = Buffer.from(data).toString('base64')
@@ -83,7 +81,7 @@ export default function ProjectSlugRoute(
     }
 
     if (book && book.file.asset._ref) {
-      fetchPdfUrl()
+      fetchPdfFile()
     }
   }, [book, toast])
 
