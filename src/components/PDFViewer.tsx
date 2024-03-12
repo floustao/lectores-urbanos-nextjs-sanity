@@ -1,7 +1,7 @@
 import 'react-pdf/dist/Page/AnnotationLayer.css'
 import 'react-pdf/dist/Page/TextLayer.css'
 
-import { Flex, useToast } from '@chakra-ui/react'
+import { Button, Flex, HStack, Stack, Text, useToast } from '@chakra-ui/react'
 import type { PDFDocumentProxy } from 'pdfjs-dist'
 import * as React from 'react'
 import { Document, Page, pdfjs } from 'react-pdf'
@@ -18,7 +18,8 @@ const resizeObserverOptions = {}
 const maxWidth = 800
 
 export default function PDFViewer({ file }: { file: string }) {
-  const [numPages, setNumPages] = React.useState<number>()
+  const [numPages, setNumPages] = React.useState<number>(null)
+  const [pageNumber, setPageNumber] = React.useState(1)
   const [containerRef, setContainerRef] = React.useState<HTMLElement | null>(
     null,
   )
@@ -39,15 +40,27 @@ export default function PDFViewer({ file }: { file: string }) {
     numPages: nextNumPages,
   }: PDFDocumentProxy): void {
     setNumPages(nextNumPages)
+    setPageNumber(1)
+  }
+
+  function changePage(offset) {
+    setPageNumber((prevPageNumber) => prevPageNumber + offset)
+  }
+
+  function previousPage() {
+    changePage(-1)
+  }
+
+  function nextPage() {
+    changePage(1)
   }
 
   return (
-    <Flex ref={setContainerRef} w="full" justify="center">
-      <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
-        {Array.from(new Array(numPages), (el, index) => (
+    <Stack w="full">
+      <Flex ref={setContainerRef} justify="center">
+        <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
           <Page
-            key={`page_${index + 1}`}
-            pageNumber={index + 1}
+            pageNumber={pageNumber}
             width={
               containerWidth ? Math.min(containerWidth, maxWidth) : maxWidth
             }
@@ -58,8 +71,22 @@ export default function PDFViewer({ file }: { file: string }) {
               })
             }
           />
-        ))}
-      </Document>
-    </Flex>
+        </Document>
+      </Flex>
+
+      <Stack spacing="2" align="center" p="4">
+        <Text>
+          Page {pageNumber || (numPages ? 1 : '--')} of {numPages || '--'}
+        </Text>
+        <HStack>
+          <Button isDisabled={pageNumber <= 1} onClick={previousPage}>
+            Previous
+          </Button>
+          <Button isDisabled={pageNumber >= numPages} onClick={nextPage}>
+            Next
+          </Button>
+        </HStack>
+      </Stack>
+    </Stack>
   )
 }
