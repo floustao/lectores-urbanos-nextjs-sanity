@@ -62,6 +62,12 @@ export default withSentryConfig(
   },
 )
 
+/*
+To see the bundle tree:
+1. npm run build
+2. ANALYZE=true yarn build
+*/
+
 // const withBundleAnalyzer = bundleAnalyzer({
 //   enabled: process.env.ANALYZE === "true",
 // });
