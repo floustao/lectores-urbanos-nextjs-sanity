@@ -13,6 +13,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   import.meta.url,
 ).toString()
 
+const options = {
+  cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
+}
+
 const resizeObserverOptions = {}
 
 const maxWidth = 800
@@ -58,7 +62,11 @@ export default function PDFViewer({ file }: { file: string }) {
   return (
     <Stack w="full">
       <Flex ref={setContainerRef} justify="center">
-        <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document
+          file={file}
+          onLoadSuccess={onDocumentLoadSuccess}
+          options={options}
+        >
           <Page
             pageNumber={pageNumber}
             width={
