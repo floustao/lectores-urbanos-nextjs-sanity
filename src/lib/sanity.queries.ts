@@ -1,5 +1,5 @@
 import { Geopoint } from '@sanity/google-maps-input'
-import type { ImageAsset, Slug } from '@sanity/types'
+import type { File, ImageAsset, Slug } from '@sanity/types'
 import groq from 'groq'
 import { type SanityClient } from 'next-sanity'
 
@@ -10,8 +10,9 @@ export async function getCompanies(client: SanityClient): Promise<Company[]> {
 }
 
 export const companyBySlugQuery = groq`*[_type == "company" && slug.current == $slug][0]`
+export const bookBySlugQuery = groq`*[_type == "book" && slug.current == $slug][0]`
 
-export async function getCompany(
+export async function getCompanyBySlug(
   client: SanityClient,
   slug: string,
 ): Promise<Company> {
@@ -23,13 +24,25 @@ export async function getCompany(
 export const companySlugsQuery = groq`
 *[_type == "company" && defined(slug.current)][].slug.current
 `
+export const bookSlugsQuery = groq`
+*[_type == "book" && defined(slug.current)][].slug.current
+`
 
-export async function getBook(
+export async function getBookById(
   client: SanityClient,
   _id: string,
 ): Promise<Book> {
   return await client.fetch(groq`*[_type == "book" && _id == $_id][0]`, {
     _id,
+  })
+}
+
+export async function getBookBySlug(
+  client: SanityClient,
+  slug: string,
+): Promise<Book> {
+  return await client.fetch(bookBySlugQuery, {
+    slug,
   })
 }
 
@@ -44,6 +57,8 @@ export type Book = {
   title: string
   author: string
   url: string
+  file: File
+  slug: Slug
 }
 
 export type Company = {

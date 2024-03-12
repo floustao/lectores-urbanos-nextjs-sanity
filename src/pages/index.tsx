@@ -11,7 +11,7 @@ import {
   Book,
   companiesQuery,
   type Company,
-  getBook,
+  getBookById,
   getCompanies,
 } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps<
   await Promise.all(
     companies.map(async (company) => {
       if (company.book?._ref) {
-        const book = await getBook(client, company.book._ref)
+        const book = await getBookById(client, company.book._ref)
         books[company.book._ref] = book
       }
     }),

@@ -50,7 +50,7 @@ export function CompanyCard({
 
       <Stack m="4" spacing="1" h="full">
         <Heading size="md" noOfLines={2}>
-          <LinkOverlay as={Link} href={`/company/${company.slug.current}`}>
+          <LinkOverlay as={Link} href={`/companias/${company.slug.current}`}>
             {company.title}
           </LinkOverlay>
         </Heading>

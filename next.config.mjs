@@ -17,6 +17,11 @@ const nextConfig = {
     defaultLocale: 'es-MX',
     localeDetection: false,
   },
+  webpack: (config) => {
+    config.resolve.alias.canvas = false
+
+    return config
+  },
 }
 
 export default withSentryConfig(

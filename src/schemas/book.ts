@@ -30,10 +30,23 @@ export default defineType({
       ],
     }),
     defineField({
-      name: 'url',
-      title: 'Url',
-      type: 'url',
+      name: 'file',
+      title: 'PDF File',
+      type: 'file',
+      options: {
+        accept: '.pdf', // Specify the accepted file type(s)
+      },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      validation: (Rule) => Rule.required(),
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
     }),
   ],
   preview: {

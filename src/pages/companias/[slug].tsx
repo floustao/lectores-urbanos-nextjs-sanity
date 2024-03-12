@@ -2,7 +2,6 @@ import { Link } from '@chakra-ui/next-js'
 import { Box, chakra, Heading, HStack, Stack, Text } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { useLiveQuery } from 'next-sanity/preview'
-import QrCode from 'react-qr-code'
 
 import { CompanyName } from '~/components/CompanyName'
 import GoogleMaps from '~/components/GoogleMaps'
@@ -16,8 +15,8 @@ import {
   type Company,
   companyBySlugQuery,
   companySlugsQuery,
-  getBook,
-  getCompany,
+  getBookById,
+  getCompanyBySlug,
 } from '~/lib/sanity.queries'
 import type { SharedPageProps } from '~/pages/_app'
 
@@ -33,14 +32,14 @@ export const getStaticProps: GetStaticProps<
   Query
 > = async ({ draftMode = false, params = {} }) => {
   const client = getClient(draftMode ? { token: readToken } : undefined)
-  const company = await getCompany(client, params.slug)
+  const company = await getCompanyBySlug(client, params.slug)
 
   if (!company) {
     return {
       notFound: true,
     }
   }
-  const book = await getBook(client, company.book._ref)
+  const book = await getBookById(client, company.book._ref)
 
   return {
     props: {
@@ -77,24 +76,16 @@ export default function ProjectSlugRoute(
               Proxima actualizacion el primero de <NextMonth />
             </Text>
 
-            <HStack>
-              <BookIcon boxSize={6} color="black" />
-              <Text fontSize="md">
-                {props.book.title} de {props.book.author}
-              </Text>
-            </HStack>
+            <Stack>
+              <Text fontSize="md">Descubra tu libro:</Text>
 
-            <Link
-              isExternal
-              href={props.book.url}
-              aria-label="Desbloquea el libro escaneando o haciendo clic en el código QR"
-              _hover={{ opacity: '0.8' }}
-            >
-              <QrCode value={props.book.url} color="red" />
-            </Link>
-            <Text fontStyle="italic">
-              Haz clic o escanea el código con tu celular para obtener el libro
-            </Text>
+              <HStack>
+                <BookIcon boxSize={6} color="black" />
+                <Link href={`/libros/${props.book.slug.current}`}>
+                  {props.book.title} de {props.book.author}
+                </Link>
+              </HStack>
+            </Stack>
 
             {company?.location ? (
               <Stack>
@@ -122,7 +113,7 @@ export const getStaticPaths = async () => {
   const slugs = await client.fetch(companySlugsQuery)
 
   return {
-    paths: slugs?.map(({ slug }) => `/company/${slug}`) || [],
+    paths: slugs?.map(({ slug }) => `/companias/${slug}`) || [],
     fallback: 'blocking',
   }
 }
