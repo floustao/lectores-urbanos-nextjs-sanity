@@ -80,7 +80,7 @@ export default function ProjectSlugRoute(
               <Text fontSize="md">Descubra tu libro:</Text>
 
               <HStack>
-                <BookIcon boxSize={6} color="black" />
+                <BookIcon boxSize={6} color="primary.500" />
                 <Link href={`/libros/${props.book.slug.current}`}>
                   {props.book.title} de {props.book.author}
                 </Link>

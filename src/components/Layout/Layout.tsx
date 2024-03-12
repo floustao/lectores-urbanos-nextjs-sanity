@@ -21,7 +21,8 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
         `}
         gridTemplateRows="auto 1fr auto"
         height="100vh"
-        p="8"
+        py="8"
+        px="4"
       >
         <HStack justify="space-between" as="header" gridArea="header">
           <Link className="header__title" href="/">
