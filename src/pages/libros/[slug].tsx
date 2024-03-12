@@ -1,5 +1,4 @@
-import { DownloadIcon } from '@chakra-ui/icons'
-import { Button, Flex, Heading, Stack, useToast } from '@chakra-ui/react'
+import { Flex, Heading, Stack, useToast } from '@chakra-ui/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import dynamic from 'next/dynamic'
 import { useLiveQuery } from 'next-sanity/preview'
@@ -94,17 +93,6 @@ export default function ProjectSlugRoute(
         <Heading as="h1" size="lg" textAlign="center">
           Disfruta tu libro!
         </Heading>
-
-        <a
-          href={pdfUrl}
-          download="document.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button leftIcon={<DownloadIcon />} variant="solid">
-            Descargar PDF
-          </Button>
-        </a>
 
         <Flex as="section" justify="center" align="center" shadow="base">
           <DynamicPDFViewer
