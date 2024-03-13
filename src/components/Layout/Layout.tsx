@@ -30,7 +30,6 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
               <NextImage
                 src="/logo_1.png"
                 alt="regresa al inicio"
-                // style={{}}
                 width={1000}
                 height={800}
                 priority
