@@ -26,14 +26,16 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
       >
         <HStack justify="space-between" as="header" gridArea="header">
           <Link className="header__title" href="/">
-            <NextImage
-              src="/main-logo.png"
-              alt="go to homepage"
-              width={150}
-              height={150}
-              priority
-              style={{ scale: '1.1' }}
-            />
+            <Box width={['120px', '120px', '150px']} height="auto">
+              <NextImage
+                src="/logo_1.png"
+                alt="regresa al inicio"
+                // style={{}}
+                width={1000}
+                height={800}
+                priority
+              />
+            </Box>
           </Link>
 
           <HamburgerNavigationMenu>
