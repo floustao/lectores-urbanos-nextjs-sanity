@@ -81,6 +81,7 @@ https://lectores-urbanos-v1.vercel.app/
   - registered users should have access to all books
   - guests users coming from scanning a physical QR code should only have access to the company page + book page the QR code is associated to
 - [ ] integrate stripe for registration
+- [ ] Generate dynamic QR code as part of the company creation + allow admins to download it
 - [ ] polish transitions for PDF rendering (loading state is in english => replace with spinner + error state if not https + kill or decrease scroll up)
 - [ ] add analytics
 - [ ] send automatic emails to users after monthly rotation of books
