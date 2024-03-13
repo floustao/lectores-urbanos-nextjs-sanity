@@ -65,6 +65,8 @@ Book page
 Studio page
 ![Studio](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/a766fd08-8707-4495-b8c0-d748217ef38b)
 
+404
+![404](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/214b0a4a-c378-45ec-bcb0-05f64fd1e566)
 
 
 
