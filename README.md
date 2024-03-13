@@ -34,8 +34,23 @@ Alternatively, you can deploy using the Vercel CLI:
 npx vercel --prod
 ```
 
-## Visuals
+## Visuals (videos)
 
+
+https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/48135459-f4e1-4e74-9921-17d6a3536fef
+
+
+
+https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/f3004915-f3a3-4b43-ab47-44bacb664d82
+
+
+
+https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/b2036d4f-a17e-4afb-9cb5-90dbcff1705f
+
+
+
+
+## Visuals (screenshots)
 Homepage
 ![Home](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/3645f162-c0fd-4407-80b4-ebbb6646c441)
 
@@ -43,10 +58,15 @@ Company Page
 ![Company page](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/dfbea9d0-192b-450a-b601-089915e1c78b)
 
 Book page
+
 ![Company page](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/26ac48c7-c857-45d0-a7ff-2749c4b5f017)
+
 
 Studio page
 ![Studio](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/a766fd08-8707-4495-b8c0-d748217ef38b)
+
+
+
 
 ## Limited access to live version at:
 
