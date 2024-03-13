@@ -34,10 +34,8 @@ Alternatively, you can deploy using the Vercel CLI:
 npx vercel --prod
 ```
 
-## Live version at:
-https://lectores-urbanos-v1.vercel.app/
-
 ## Visuals
+
 Homepage
 ![Home](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/3645f162-c0fd-4407-80b4-ebbb6646c441)
 
@@ -50,5 +48,6 @@ Book page
 Studio page
 ![Studio](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/a766fd08-8707-4495-b8c0-d748217ef38b)
 
+## Limited access to live version at:
 
-
+https://lectores-urbanos-v1.vercel.app/

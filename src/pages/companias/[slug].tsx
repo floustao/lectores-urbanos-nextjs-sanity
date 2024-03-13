@@ -96,7 +96,7 @@ export default function ProjectSlugRoute(
 
                 <GoogleMaps location={company.location} />
               </Stack>
-            ) : company.url ? (
+            ) : company?.url ? (
               <Text>
                 Visita <CompanyName company={company} />.
               </Text>
