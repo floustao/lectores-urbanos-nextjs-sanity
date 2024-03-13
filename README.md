@@ -73,3 +73,14 @@ Studio page
 ## Limited access to live version at:
 
 https://lectores-urbanos-v1.vercel.app/
+
+## Next steps
+- [ ] add authentication to distinguish admin users from regular users
+- [ ] implement route permissions:
+  - admin should have access to studio
+  - registered users should have access to all books
+  - guests users coming from scanning a physical QR code should only have access to the company page + book page the QR code is associated to
+- [ ] integrate stripe for registration
+- [ ] polish transitions for PDF rendering (loading state is in english => replace with spinner + error state if not https + kill or decrease scroll up)
+- [ ] add analytics
+- [ ] send automatic emails to users after monthly rotation of books
