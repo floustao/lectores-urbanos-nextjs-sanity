@@ -68,12 +68,6 @@ Studio page
 404
 ![404](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/214b0a4a-c378-45ec-bcb0-05f64fd1e566)
 
-
-
-## Limited access to live version at:
-
-https://lectores-urbanos-v1.vercel.app/
-
 ## Next steps
 - [ ] add authentication to distinguish admin users from regular users
 - [ ] implement route permissions:
