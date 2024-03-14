@@ -1,14 +1,13 @@
 # Lectores Urbanos
 
-[Lectores urbanos](https://lectoresurbanos.com/) is a non-profit whose goal is to encourage critical thinking; with the central strategy of promoting the habit of reading, art, and social values. They currently operate in Mexico.
+[Lectores urbanos](https://lectoresurbanos.com/) is a non-profit organization whose goal is to encourage critical thinking. Its central strategy is to promote the habit of reading, art, and social values. Lectores Urbanos currently operates in Mexico.
 
-The goal is to allow people to access free online books by scanning a QR code. They could find these QR code by going to their physical school buildings, or buying food from their favourite shops and more.
+The goal is to allow people to access free online books by scanning a QR code. People can find the QR code by visiting their physical school buildings, buying food from their favorite shops, and more.
 
-This web app is a prototype/MVP. It uses [Next.js](https://nextjs.org) for the frontend and [Sanity](https://www.sanity.io/) to handle its content. For the styling we are using [Chakra UI](https://chakra-ui.com) which offers good solutions for building accessible components.
-The use of a headless CMS like Sanity is to allow admin to maintain the content without needing programming skills.
-It comes with a native Sanity Studio that offers features like instant side-by-side content previews, intuitive editing, image transformation, content deployment scheduling.
+This web app is a prototype/MVP. It uses [Next.js](https://nextjs.org) for the front end and [Sanity](https://www.sanity.io/) to handle its content. For the styling, we are using [Chakra UI](https://chakra-ui.com), which offers suitable solutions for building accessible components.
 
-We use [Vercel](https://vercel.com) for hosting and CI/CD.
+The use of a headless CMS like Sanity is to allow admin users to maintain the content without needing programming skills.
+It comes with a native Sanity Studio that offers features like instant side-by-side content previews, intuitive editing, image transformation, and content deployment scheduling.
 
 > **Note**
 >
