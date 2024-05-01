@@ -53,9 +53,6 @@ https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/b2036
 Homepage
 ![Home](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/3645f162-c0fd-4407-80b4-ebbb6646c441)
 
-Company Page
-![Company page](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/dfbea9d0-192b-450a-b601-089915e1c78b)
-
 Book page
 
 ![Company page](https://github.com/floustao/lectores-urbanos-nextjs-sanity/assets/25415107/26ac48c7-c857-45d0-a7ff-2749c4b5f017)
