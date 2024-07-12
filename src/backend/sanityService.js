@@ -1,7 +1,6 @@
 import { writeToken } from '~/lib/sanity.api'
 import { getClient } from '~/lib/sanity.client'
 
-// Closure mechanism that ensures step is incremented each time we trigger updateCompanyBooks
 const startingIndex = (() => {
   let step = 0;
   return () => step++;
