@@ -8,7 +8,6 @@ export default function UpdateCompaniesButton() {
   const handleupdateCompanies = async () => {
     try {
       setIsLoading(true)
-      // Send a request to your backend API route or function to trigger the update process
       const response = await fetch('/api/update-companies', { method: 'POST' })
       if (response.ok) {
         toast({
@@ -37,7 +36,6 @@ export default function UpdateCompaniesButton() {
       isLoading={isLoading}
       size="sm"
       onClick={() => {
-        // Add confirmation before destructive actions.
         if (
           window.confirm(
             'Are you sure you want to shuffle the connections between all companies and books?',
