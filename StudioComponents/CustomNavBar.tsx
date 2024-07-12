@@ -23,7 +23,7 @@ export function CustomNavBar(props: NavbarProps) {
             <UpdateCompaniesButton />
           </Flex>
         </Card>
-        {props.renderDefault(props)} {/* Render the default navbar */}
+        {props.renderDefault(props)}
       </Stack>
     </Card>
   )
